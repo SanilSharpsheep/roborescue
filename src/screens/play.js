@@ -75,7 +75,7 @@ async function run(root, id, b, out, def) {
       if (settled && !out.ok) { img = stuck; sw *= 1.2; }
       const wob = reduce ? 0 : Math.sin(sec * 3) * H * .008;
       if (img) { const sh = sw * img.height / img.width; ctx.save(); ctx.globalAlpha = alpha; ctx.drawImage(img, W * bx - sw / 2, H * by - sh / 2 + wob + dy, sw, sh);
-        if (onSocket && sensorImg) { const iw = sw * .3, ih = iw * sensorImg.height / sensorImg.width, [sx, sy] = (mvPart && mvPart.bot ? mvPart.bot : NEUTRAL_BOT).socket; ctx.drawImage(sensorImg, W * bx - sw / 2 + sw * sx / 100 - iw / 2, H * by - sh / 2 + wob + dy + sh * sy / 100 - ih * .92, iw, ih); }
+        if (onSocket && sensorImg) { const iw = sw * (sensePart && sensePart.id === "water" ? .2 : .3), ih = iw * sensorImg.height / sensorImg.width, [sx, sy] = (mvPart && mvPart.bot ? mvPart.bot : NEUTRAL_BOT).socket; ctx.drawImage(sensorImg, W * bx - sw / 2 + sw * sx / 100 - iw / 2, H * by - sh / 2 + wob + dy + sh * sy / 100 - ih * .92, iw, ih); }
         ctx.restore(); }
       if (look.splash && !reduce) { ctx.fillStyle = 'rgba(255,255,255,.8)'; for (let i = 0; i < 6; i++) { ctx.beginPath(); ctx.arc(W * bx + Math.cos(i * 1.1 + sec * 4) * W * .04, H * by + Math.sin(i * 1.7 + sec * 5) * H * .03, H * .008, 0, 7); ctx.fill(); } }
       if (settled && look.lost) { ctx.fillStyle = '#fff'; ctx.font = `800 ${H * .08}px Baloo 2, sans-serif`; ctx.strokeStyle = '#0f3675'; ctx.lineWidth = H * .012; ctx.strokeText('?', W * bx + W * .07, H * by - H * .08); ctx.fillText('?', W * bx + W * .07, H * by - H * .08); }
