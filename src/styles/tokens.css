@@ -1,0 +1,31 @@
+/* RoboRescue design tokens (match the design canvas). 1rem = 16px on a 1366 x 768 screen. */
+:root {
+  --navy: #0f3675;
+  --blue: #237be5;
+  --blue-dark: #1a62b8;
+  --ocean: #2aa9c6;
+  --green: #5ebc2e;
+  --yellow: #ffc928;
+  --coral: #f15b49;
+  --purple: #8b5ca9;
+  --cream: #fffbf0;
+  --cream-line: #ead9b0;
+  --ink: var(--navy);
+  --ink-soft: #476083;
+  --ink-mute: #5d6f8a;
+  --line: #c3d3e8;
+  --track: #e4ecf7;
+
+  --font-display: 'Baloo 2', 'Nunito', system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --bg: radial-gradient(75rem 20rem at 50% -5rem, #9adceb 0, rgba(154, 220, 235, 0) 70%),
+        linear-gradient(180deg, #cfeef7 0, #fff6df 20rem);
+  --card: #fffbf0;
+  --card-border: 3px solid var(--cream-line);
+  --card-shadow: 0 5px 0 rgba(120, 90, 20, 0.12), 0 12px 24px rgba(15, 54, 117, 0.1);
+  --btn-yellow: linear-gradient(180deg, #ffe066 0, #ffc928 55%, #f2ae0e 100%);
+  --btn-blue: linear-gradient(180deg, #4fa3ff 0, #237be5 55%, #1a62b8 100%);
+  --btn-red: linear-gradient(180deg, #ff8a7a 0, #f15b49 60%, #d6402f 100%);
+  --focus: #237be5;
+}

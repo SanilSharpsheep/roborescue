@@ -1,0 +1,16 @@
+{
+  "name": "roborescue",
+  "private": true,
+  "version": "0.1.0",
+  "description": "RoboRescue: build animal-inspired rescue robots for Texas floods. Congressional App Challenge entry.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:phone": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host"
+  },
+  "devDependencies": {
+    "vite": "^8.3.1"
+  }
+}

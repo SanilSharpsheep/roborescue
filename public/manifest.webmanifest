@@ -1,0 +1,14 @@
+{
+  "name": "RoboRescue",
+  "short_name": "RoboRescue",
+  "description": "Build animal-inspired rescue robots for Texas floods.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFFAF0",
+  "theme_color": "#0F3675",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
