@@ -83,7 +83,7 @@ async function run(root, id, b, out, def) {
     def.draw(ctx, W, H, { p, sec, k, out, b, drawBot, reduce, finished: settled, images });
     setMeters(p);
     if (k >= 1 && !finished) { finished = true; done(); }
-    if (!finished || !out.ok) raf = requestAnimationFrame(frame);
+    raf = requestAnimationFrame(frame);
   }
   function done() {
     const bn = $('#banner'); bn.hidden = false;
