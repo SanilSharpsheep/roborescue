@@ -3,7 +3,7 @@
 // gets quieter during a mission, and pauses when the tab is hidden.
 import { settings } from '../state.js';
 
-const BPM = 96, BEAT = 60 / BPM;
+const BPM = 84, BEAT = 60 / BPM;
 const N = (m) => 440 * Math.pow(2, (m - 69) / 12);          // MIDI note -> Hz
 // 4 bars, each: [bass note, 8 melody notes (0 = rest)]. C - Am - F - G in C major.
 const BARS = [
@@ -25,11 +25,11 @@ function schedule() {
     const bar = BARS[Math.floor(step / 8) % BARS.length], i = step % 8;
     if (i === 0) { note(N(bar[0]), nextT, BEAT * 3.6, 'sine', 0.16); note(N(bar[0] + 12), nextT, BEAT * 3.6, 'sine', 0.05); }
     if (i === 4) note(N(bar[0] + 7), nextT, BEAT * 1.8, 'sine', 0.09);
-    const m = bar[1][i]; if (m) note(N(m), nextT, BEAT * 0.9, 'triangle', 0.07);
+    const m = bar[1][i]; if (m) note(N(m), nextT, BEAT * 1.1, 'sine', 0.06);
     nextT += BEAT / 2; step++;
   }
 }
-function level() { return location.hash.startsWith('#/play') ? 0.35 : 1; }
+function level() { return location.hash.startsWith("#/play") ? 0.3 : 1; }
 
 export function syncMusic() {
   const on = settings().music;
@@ -37,7 +37,7 @@ export function syncMusic() {
   if (on) {
     if (!ctx) { const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; ctx = new AC(); master = ctx.createGain(); master.connect(ctx.destination); }
     if (ctx.state === 'suspended') ctx.resume();
-    master.gain.setTargetAtTime(0.5 * level(), ctx.currentTime, 0.4);
+    master.gain.setTargetAtTime(0.16 * level(), ctx.currentTime, 0.4);
     if (!timer) { nextT = ctx.currentTime + 0.1; step = 0; timer = setInterval(schedule, 200); }
   } else if (timer) { clearInterval(timer); timer = 0; if (ctx) ctx.suspend(); }
 }
