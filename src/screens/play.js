@@ -25,7 +25,7 @@ export function play({ id }) {
         <div class="card pad meters"><div class="meter"><span>Energy</span><div class="bar"><i id="e" style="width:0"></i></div><b id="et">${out.energy} of 5</b></div>
           <div class="meter"><span>Safety</span><div class="bar"><i id="s" style="width:0;background:linear-gradient(180deg,#6cb8ff,#237be5)"></i></div><b id="st">${out.safety} of 5</b></div>
           <div class="meter"><span>Mission progress</span><div class="bar"><i id="p" style="width:0;background:linear-gradient(180deg,#ffe066,#f2ae0e)"></i></div><b id="pt">0%</b></div></div>
-        <div class="card pad wincard" id="wincard" hidden><p class="eyebrow">Mission complete!</p><h2>Nice work, explorer!</h2>
+        <div class="card pad wincard" id="wincard" hidden><p class="eyebrow">Mission complete!</p><h2>Nice work, rescuer!</h2>
           <p class="sm">${esc(def.quizTip)}</p><button class="btn blue" id="cont">CONTINUE</button></div>
         <div class="card pad hintcard" id="hintcard" hidden>
           <p class="eyebrow">Hint</p><h2 id="hh"></h2><p id="hq" class="hq"></p>

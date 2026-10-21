@@ -1,5 +1,6 @@
+import { NEUTRAL_BOT } from '../game/parts.js';
 import { icon } from '../ui/icons.js';
-import { esc, avatarFace } from '../ui/util.js';
+import { esc, avatarFace, art } from '../ui/util.js';
 import { addExplorer, explorers } from '../state.js';
 import { go } from '../router.js';
 
@@ -7,12 +8,12 @@ const NAMES = ['Sparky', 'Captain Fin', 'Splash', 'Nova', 'Dash'];
 const AVATARS = [1, 2, 3, 4];
 
 export function newExplorer() {
-  const av = AVATARS.map((n, i) => `<button class="avpick" data-a="${n}" aria-label="Explorer ${n}" aria-pressed="${i === 0}"><img src="${avatarFace(n)}" alt=""></button>`).join('');
+  const av = AVATARS.map((n, i) => `<button class="avpick" data-a="${n}" aria-label="Rescuer face ${n}" aria-pressed="${i === 0}"><img src="${avatarFace(n)}" alt=""></button>`).join('');
   const chips = NAMES.map((n) => `<button class="chip" type="button">${esc(n)}</button>`).join('');
   return {
-    title: 'Make your explorer',
+    title: 'Join the Rescue Team',
     html: `<div class="screen center-screen scroll">${icon.leaves}
-      <h1 class="big-title">Make your explorer</h1>
+      <h1 class="big-title">Join the Rescue Team!</h1><p class="note" style="margin-top:-.4rem">A flood hit Texas. Pick a name and face, then build a Rescue Bot to help!</p>
       <div class="newgrid">
         <div class="card pad">
           <label class="eyebrow" for="nm">Your name</label>
@@ -23,9 +24,10 @@ export function newExplorer() {
           <p class="eyebrow" style="margin-top:1rem">Pick a face</p>
           <div class="avrow">${av}</div>
         </div>
-        <div class="card pad preview"><p class="eyebrow">You will be</p>
+        <div class="card pad preview"><p class="eyebrow">You are a Rescuer</p>
           <span class="avatar pv"><img id="pv" src="${avatarFace(1)}" alt=""></span>
-          <b id="pn" class="pname">Explorer</b></div>
+          <b id="pn" class="pname">Rescuer</b>
+          <div class="botintro"><img src="${art(NEUTRAL_BOT.img)}" alt=""><p>Meet your <b>Rescue Bot</b>! You will give it parts to save the day.</p></div></div>
       </div>
       <button class="btn huge" id="go" disabled>LET'S GO!</button>
       ${explorers().length ? '<a class="link" href="#/who">← Back</a>' : '<a class="link" href="#/">← Back</a>'}</div>`,
@@ -35,7 +37,7 @@ export function newExplorer() {
       const upd = () => {
         const v = nm.value.trim();
         root.querySelector('#ct').textContent = nm.value.length;
-        root.querySelector('#pn').textContent = v || 'Explorer';
+        root.querySelector('#pn').textContent = v || 'Rescuer';
         go_.disabled = !v;
       };
       nm.oninput = upd;
