@@ -69,7 +69,7 @@ async function run(root, id, b, out, def) {
     const settled = !out.ok && k >= 1;
     // The mission draws its own props and calls drawBot(x, y, look) once.
     const drawBot = (bx, by, look = {}) => {
-      let img = sprite, sw = W * .17, alpha = 1, dy = 0;
+      let img = sprite, sw = W * .23, alpha = 1, dy = 0;
       if (settled && look.sink) { const sink = Math.min(1, (now - t0 - DUR) / 1200); dy = sink * H * .04; alpha = 1 - sink * .12; }
       
       if (settled && !out.ok) { img = stuck; sw *= 1.2; }
