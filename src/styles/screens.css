@@ -4,7 +4,7 @@
 .welcome-in { position: relative; display: flex; flex-direction: column; align-items: center; gap: 1.6rem; padding: 1rem; }
 .logo { font-size: 7.5rem; color: var(--yellow); -webkit-text-stroke: 0.4rem var(--navy); paint-order: stroke fill; text-shadow: 0 0.4rem 0 var(--navy); }
 .logo span { color: #fff; }
-.tag { font-size: 1.6rem; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,.55); max-width: 40rem; }
+.tag { font-size: 1.7rem; font-weight: 800; line-height: 1.4; letter-spacing: .01em; color: #fff; background: rgba(10,38,92,.88); border: 3px solid rgba(255,255,255,.9); border-radius: 1.2rem; padding: .9rem 1.4rem; max-width: 40rem; text-shadow: none; box-shadow: 0 6px 18px rgba(0,0,0,.35); }
 
 /* ---------- Centered flow screens ---------- */
 .center-screen { flex-direction: column; align-items: center; justify-content: center; gap: 1.4rem; padding: 2rem 1rem; text-align: center; }
@@ -103,7 +103,8 @@
   .mission { grid-row: auto; }
   .worldrow { flex-wrap: wrap; } .world { flex: 1 1 40%; }
   .badgewall { grid-template-columns: repeat(2, 1fr); }
-  .logo { font-size: 3.6rem; -webkit-text-stroke-width: .25rem; }
+  .logo { font-size: 3.1rem; -webkit-text-stroke-width: .22rem; }
+  .tag { font-size: 1.25rem; padding: .75rem 1rem; }
   .btn.huge { padding: 0 2.5rem; font-size: 2rem; }
   .big-title { font-size: 2.4rem; }
 }
