@@ -3,6 +3,7 @@ import { art, esc, emoji } from '../ui/util.js';
 import { icon } from '../ui/icons.js';
 import { current, missionState } from '../state.js';
 import { MISSIONS } from '../data/missions.js';
+import { WORLDS } from '../data/worlds.js';
 
 export function missions() {
   const e = current();
@@ -14,6 +15,6 @@ export function missions() {
       <h2>${esc(m.title)}</h2><p>${esc(m.blurb)}</p><div class="stars">${star}</div>${tag}</div>`;
     return st === 'locked' ? `<div class="card mrow locked">${inner}</div>` : `<a class="card mrow" href="#/build/${m.id}">${inner}</a>`;
   }).join('');
-  return { title: 'Missions', html: shell('/missions', `${pageHead('Water World', 'Three missions. Each one earns a badge!')}<div class="mlist">${rows}</div>
+  return { title: 'Missions', html: shell('/missions', `${pageHead('Water World', `${esc(WORLDS.find((w) => w.id === 'water').story)} Each mission earns a badge!`)}<div class="mlist">${rows}</div>
     `) };
 }

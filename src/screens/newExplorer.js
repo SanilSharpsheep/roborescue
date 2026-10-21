@@ -13,7 +13,7 @@ export function newExplorer() {
   return {
     title: 'Join the Rescue Team',
     html: `<div class="screen center-screen scroll">${icon.leaves}
-      <h1 class="big-title">Join the Rescue Team!</h1><p class="note" style="margin-top:-.4rem">A flood hit Texas. Pick a name and face, then build a Rescue Bot to help!</p>
+      <h1 class="big-title">Join the Rescue Team!</h1><p class="note" style="margin-top:-.4rem">Pick a name and face, then build a Rescue Bot to help!</p>
       <div class="newgrid">
         <div class="card pad">
           <label class="eyebrow" for="nm">Your name</label>
