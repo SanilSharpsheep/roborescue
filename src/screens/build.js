@@ -24,7 +24,7 @@ function botPreview(mv, se) {
   const [x, y] = bot.socket;
   const alt = mv ? `Rescue bot with ${mv.name}${se ? ` and ${se.name} sensor` : ''}` : 'Unfinished rescue bot';
   return `<div class="botstage"><div class="bot-preview"><img class="bot-image" src="${art(bot.img)}" alt="${esc(alt)}">
-    ${se ? `<img class="attached-sensor" src="${art(se.img)}" alt="" style="left:${x}%;top:${y}%">` : ''}</div></div>`;
+    ${se ? `<img class="attached-sensor" src="${art(se.img)}" alt="" style="width:${se.id === "water" ? 20 : 30}%;left:${x}%;top:${y}%">` : ''}</div></div>`;
 }
 
 export function build({ id }) {
