@@ -6,7 +6,7 @@ const DEFAULTS = () => ({
   v: 1,
   current: null,
   explorers: [],
-  settings: { sound: true, music: false, readAloud: true, textSize: 'm', reduceMotion: false, research: false },
+  settings: { sound: true, music: true, readAloud: true, textSize: 'm', reduceMotion: false, research: false },
   researchLog: [],
 });
 
@@ -18,7 +18,9 @@ function load() {
     const raw = localStorage.getItem(KEY);
     if (!raw) return DEFAULTS();
     const data = JSON.parse(raw);
-    return { ...DEFAULTS(), ...data, settings: { ...DEFAULTS().settings, ...(data.settings || {}) } };
+    const st = { ...DEFAULTS().settings, ...(data.settings || {}) };
+    if (!st.musicTouched) st.music = true; // music was never switched by the player, so use the new default (on)
+    return { ...DEFAULTS(), ...data, settings: st };
   } catch {
     return memory || DEFAULTS();
   }
@@ -31,7 +33,7 @@ const uid = () => Math.random().toString(36).slice(2, 10);
 
 export const getState = () => state;
 export const settings = () => state.settings;
-export function setSetting(key, value) { state.settings[key] = value; save(); }
+export function setSetting(key, value) { state.settings[key] = value; if (key === 'music') state.settings.musicTouched = true; save(); }
 
 export const explorers = () => state.explorers;
 export const current = () => state.explorers.find((e) => e.id === state.current) || null;

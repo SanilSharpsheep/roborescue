@@ -59,7 +59,9 @@ route('/result/:id', result);
 route('/settings', settingsScreen);
 
 import { unlockAudio, clickSounds } from './ui/sound.js';
+import { startMusic } from './ui/music.js';
 unlockAudio();
+startMusic();
 clickSounds();
 applySettings();
 start();
