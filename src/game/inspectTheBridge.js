@@ -27,7 +27,7 @@ export const inspectTheBridge = {
   sensors: ['echo', 'heat', 'water'],
   maxSense: 2,
   defaultBuild: { move: null, sense: [], then2: 'work' },
-  previewImg: { gecko: 'bots/gecko-three-quarter.png' },
+  previewImg: { gecko: 'bots/gecko-three-quarter.webp' },
   hint: 'Cracks can be tiny. Which sensor uses sound to find them? And which one warns you if the water rises?',
   rules: [
     { key: 'rule1', label: 'Rule 1', ifText: (b) => `${name(b.sense[0], 'A sensor')} finds a crack`, fixedThen: 'Mark it' },
@@ -44,8 +44,8 @@ export const inspectTheBridge = {
   badgeCopy: 'You found cracks in a bridge with a gecko-inspired robot.',
   tip: (out) => (out.stars === 3 ? 'Perfect! Your robot got out before the flood rose.' : out.safety < 4 ? 'Use the Water sensor and "Climb higher" for the third star.' : 'Try a different build for more stars.'),
   quizTip: 'Next: a quick 2-question quiz about geckos.',
-  sprite: (b) => (b.move === 'gecko' ? 'bots/gecko-side.png' : null),
-  stuckSprite: 'bots/gecko-stuck.png', spriteWidth: (b) => (b.move === 'gecko' ? 0.1 : 0.08),
+  sprite: (b) => (b.move === 'gecko' ? 'bots/gecko-side.webp' : null),
+  stuckSprite: 'bots/gecko-stuck.webp', spriteWidth: (b) => (b.move === 'gecko' ? 0.1 : 0.08),
   draw: drawBridge,
 };
 

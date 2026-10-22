@@ -1,5 +1,6 @@
 import { shell } from '../ui/shell.js';
 import { art, esc } from '../ui/util.js';
+import { sayBtn } from '../ui/speak.js';
 import { icon } from '../ui/icons.js';
 import { current, savedBuild, saveBuild, missionState } from '../state.js';
 import { missionById } from '../data/missions.js';
@@ -76,7 +77,7 @@ export function build({ id }) {
       const draw = () => {
         const mv = partById(MOVES, b.move), ses = b.sense.map((x) => partById(SENSORS, x));
         const step = stepNow(), done = step === 3 && rulesDone();
-        $('#prev').innerHTML = botPreview(mv, ses[0]) + `<p class="selnote" aria-live="polite">${esc(EXPLAIN[lastPick] || '')}</p><div class="guide"><img src="${art('mascot/point.png')}" alt=""><p class="bubble" aria-live="polite">${esc(done ? 'Your bot is ready! Press TEST MY BOT.' : MSG[step])}</p></div>`;
+        $('#prev').innerHTML = botPreview(mv, ses[0]) + `<p class="selnote" aria-live="polite">${esc(EXPLAIN[lastPick] || '')}</p><div class="guide"><img src="${art('mascot/point.webp')}" alt=""><p class="bubble" aria-live="polite">${esc(done ? 'Your bot is ready! Press TEST MY BOT.' : MSG[step])}</p>${sayBtn('data-say-sel=".selnote, .bubble"')}</div>`;
         drawRules();
         $('#test').disabled = !done;
         $('#ready').textContent = done ? `Ready: ${def.summary(b)}` : MSG[step];

@@ -392,3 +392,11 @@
 /* Long mission messages wrap instead of being cut off */
 .banner { white-space: normal; text-overflow: clip; text-align: center; line-height: 1.15; border-radius: 1.6rem; width: max-content; }
 @media (max-width: 699px) { .banner { font-size: 1.35rem; padding: .6rem 1.1rem; } }
+.loadmsg { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-display); font-size: 1.6rem; color: var(--navy); z-index: 1; margin: 0; }
+.quiztop { display: flex; justify-content: space-between; gap: 1rem; }
+#introx { min-width: 2.75rem; min-height: 2.75rem; }
+/* Read-it-to-me speaker button */
+.saybtn { display: inline-grid; place-items: center; width: 2.9rem; height: 2.9rem; min-width: 44px; min-height: 44px; margin: .3rem .4rem .3rem 0; border-radius: 50%; border: 3px solid var(--blue-dark, #1c4f9c); background: #fff; color: var(--blue-dark, #1c4f9c); cursor: pointer; padding: 0; flex: none; }
+.saybtn svg { width: 58%; height: 58%; }
+.saybtn:focus-visible { outline: 4px solid var(--yellow); outline-offset: 2px; }
+.guide { align-items: center; }

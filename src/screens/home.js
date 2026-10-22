@@ -1,3 +1,4 @@
+import { sayBtn } from '../ui/speak.js';
 import { shell } from '../ui/shell.js';
 import { esc, art, avatarFace, emoji } from '../ui/util.js';
 import { markGuideSeen, current, nextMission, totalStars, levelOf, starsToNext } from '../state.js';
@@ -18,7 +19,7 @@ export function home() {
     : `<li title="Locked"><span class="bframe locked"><img src="${art('emoji/locked.svg')}" alt="Locked badge"></span></li>`).join('');
   const mission = m ? `<a class="card mission" href="#/build/${m.id}">
       <img class="scene" src="${art('scenes/' + m.scene)}" alt="">
-      <img class="robot" src="${art('bots/manta-front.png')}" alt="">
+      <img class="robot" src="${art('bots/manta-front.webp')}" alt="">
       <div class="mtext"><span class="pill lvl">${esc(m.level)}</span><h2>${esc(m.title)}</h2><p>${esc(m.blurb)}</p>
       <span class="btn blue">START</span></div></a>`
     : `<div class="card pad"><h2>All missions done!</h2><p>New missions are coming soon.</p></div>`;
@@ -34,7 +35,7 @@ export function home() {
           <div class="bar"><i style="width:${(totalStars(e) % 10) * 10}%"></i></div>
           <p class="sm">${emoji('star', '1.2em')} ${stars} stars · ${starsToNext(e)} to next level</p></div>
         <div class="card pad bcard"><p class="eyebrow">Your badges</p><ul class="badgegrid">${slots}</ul></div>
-        <div class="card pad fact"><img src="${art('mascot/think.png')}" alt=""><div><p class="eyebrow">Did you know?</p><p>${esc(fact)}</p></div></div>
+        <div class="card pad fact"><img src="${art('mascot/think.webp')}" alt=""><div><p class="eyebrow">Did you know?</p><p>${esc(fact)}</p></div></div>
       </div>`),
 
     mount(root) {
@@ -49,8 +50,8 @@ export function home() {
         const draw = () => {
           const [n, t, d] = STEPS[i], last = i === STEPS.length - 1;
           w.innerHTML = `<div class="leavebox guidebox" role="dialog" aria-modal="true" aria-labelledby="gt">
-            <img src="${art('mascot/point.png')}" alt="" class="guideimg">
-            <p class="eyebrow">Step ${n} of ${STEPS.length}</p><h2 id="gt">${t}</h2><p>${d}</p>
+            <img src="${art('mascot/point.webp')}" alt="" class="guideimg">
+            <p class="eyebrow">Step ${n} of ${STEPS.length}</p><h2 id="gt">${t}</h2><p>${d}</p>${sayBtn('data-say-sel="#gt, #gt + p"')}
             <div class="row"><button type="button" class="btn ghost small" id="gskip">Skip</button><button type="button" class="btn blue" id="gnext">${last ? "LET'S GO!" : 'NEXT'}</button></div></div>`;
           w.querySelector('#gnext').focus();
           w.querySelector('#gnext').onclick = () => { if (last) close(); else { i++; draw(); } };

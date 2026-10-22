@@ -6,6 +6,7 @@ import { MOVES, SENSORS, NEUTRAL_BOT, partById } from '../game/parts.js';
 import { defOf } from '../game/registry.js';
 import { session } from '../game/session.js';
 import { go } from '../router.js';
+import { sayBtn } from '../ui/speak.js';
 import { sounds } from '../ui/sound.js';
 
 const load = (src) => new Promise((res) => { const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; });
@@ -19,16 +20,16 @@ export function play({ id }) {
   return {
     title: 'Test your bot',
     html: `<div class="screen playscreen">
-      <div class="playmain"><header class="playbar"><a class="btn ghost small" href="#/missions">Leave mission</a><b>Mission: ${esc(m.title)}</b><button type="button" class="btn ghost small" id="skip" style="margin-left:auto;margin-right:3.8rem">Skip ▸▸</button></header>
-        <div class="stage card"><canvas id="cv" aria-label="Your robot trying the mission" role="img"></canvas><canvas id="fx" aria-hidden="true"></canvas><div id="banner" class="banner" hidden></div></div></div>
+      <div class="playmain"><header class="playbar"><a class="btn ghost small" href="#/missions">Leave mission</a><a class="btn ghost small" href="#/home" aria-label="Home">Home</a><b>Mission: ${esc(m.title)}</b><button type="button" class="btn ghost small" id="skip" style="margin-left:auto;margin-right:3.8rem">Skip ▸▸</button></header>
+        <div class="stage card"><p id="loading" class="loadmsg" role="status">Getting your mission ready&hellip;</p><canvas id="cv" aria-label="Your robot trying the mission" role="img"></canvas><canvas id="fx" aria-hidden="true"></canvas><div id="banner" class="banner" hidden></div></div></div>
       <aside class="playside">
         <div class="card pad meters"><div class="meter"><span>Energy</span><div class="bar"><i id="e" style="width:0"></i></div><b id="et">${out.energy} of 5</b></div>
           <div class="meter"><span>Safety</span><div class="bar"><i id="s" style="width:0;background:linear-gradient(180deg,#6cb8ff,#237be5)"></i></div><b id="st">${out.safety} of 5</b></div>
           <div class="meter"><span>Mission progress</span><div class="bar"><i id="p" style="width:0;background:linear-gradient(180deg,#ffe066,#f2ae0e)"></i></div><b id="pt">0%</b></div></div>
         <div class="card pad wincard" id="wincard" hidden><p class="eyebrow">Mission complete!</p><h2>Nice work, rescuer!</h2>
-          <p class="sm">${esc(def.quizTip)}</p><button class="btn blue" id="cont">CONTINUE</button></div>
+          <p class="sm">${esc(def.quizTip)}</p>${sayBtn('data-say-sel=".wincard h2, .wincard .sm"')}<button class="btn blue" id="cont">CONTINUE</button></div>
         <div class="card pad hintcard" id="hintcard" hidden>
-          <p class="eyebrow">Hint</p><h2 id="hh"></h2><p id="hq" class="hq"></p>
+          <p class="eyebrow">Hint</p><h2 id="hh"></h2><p id="hq" class="hq"></p>${sayBtn('data-say-sel="#hh, #hq"')}
           <p class="eyebrow" style="margin-top:.8rem">Your build</p><p class="sm">${esc(mv ? mv.name : '')} · ${esc(b.sense.join(' + '))} · ${b.sense.length > 1 && def.rules.length > 1 ? 2 : 1} rule${b.sense.length > 1 && def.rules.length > 1 ? 's' : ''}</p>
           <p class="sm dim">Your choices are saved. Change one and try again.</p>
           <div class="hintbtns"><a class="btn ghost small" href="#/build/${id}">CHANGE PARTS</a><button class="btn blue small" id="again">TRY AGAIN</button></div></div>
@@ -43,7 +44,8 @@ async function run(root, id, b, out, def) {
   // Same robot the kid built: the picture for the chosen movement part, with the sensor on its socket.
   const mvPart = partById(MOVES, b.move), sensePart = partById(SENSORS, b.sense[0]);
   const spritePath = (mvPart && mvPart.bot ? mvPart.bot : NEUTRAL_BOT).img;
-  const [scene, sprite, sensorImg, stuckImg] = await Promise.all([load(art(def.scene)), load(art(spritePath)), sensePart ? load(art(sensePart.img)) : null, load(art(spritePath.replace('.png', '-stuck.png')))]);
+  const [scene, sprite, sensorImg, stuckImg] = await Promise.all([load(art(def.scene)), load(art(spritePath)), sensePart ? load(art(sensePart.img)) : null, load(art(spritePath.replace('.webp', '-stuck.webp')))]);
+  const ld = root.querySelector('#loading'); if (ld) ld.remove();
   const stuck = stuckImg || sprite, onSocket = true; // stuck = the same robot with a worried face
   const images = {}; await Promise.all((def.extraImages || []).map(async (x) => { images[x] = await load(art(x)); }));
   const reduce = settings().reduceMotion || matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -54,8 +56,7 @@ async function run(root, id, b, out, def) {
   };
   fit(); addEventListener('resize', fit);
   // Leaving in the middle of a test run asks first, so one accidental tap does not lose the run.
-  const leave = root.querySelector('.playbar a');
-  if (leave) leave.addEventListener('click', (ev) => {
+  root.querySelectorAll('.playbar a').forEach((leave) => leave.addEventListener('click', (ev) => {
     if (finished) return;
     ev.preventDefault();
     const w = document.createElement('div'); w.className = 'leavewrap';
@@ -63,8 +64,8 @@ async function run(root, id, b, out, def) {
     root.appendChild(w);
     w.querySelector('#stay').focus();
     w.querySelector('#stay').onclick = () => w.remove();
-    w.querySelector('#lv').onclick = () => { w.remove(); go('/missions'); };
-  });
+    w.querySelector('#lv').onclick = () => { w.remove(); go(leave.getAttribute('href').slice(1)); };
+  }));
   const DUR = reduce ? 1200 : 9000;
   const skipBtn = root.querySelector('#skip');
   skipBtn.onclick = () => { if (t0 !== null) t0 -= DUR; skipBtn.hidden = true; };
