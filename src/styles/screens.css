@@ -442,3 +442,7 @@ button.who { cursor: pointer; }
 .center-screen:has(> .topbar) { padding-top: 5.2rem; }
 @media (max-width: 699px) { .logo.sm { font-size: 2.6rem; } }
 .logo.sm span { color: var(--navy); }
+/* Room under the name box so the focus ring does not cover the 0/12 counter */
+.field { margin-bottom: .5rem; }
+.field:focus, .field:focus-visible { outline: 4px solid var(--blue); outline-offset: 2px; }
+.count { margin-top: .35rem; padding-right: .3rem; line-height: 1.2; }
