@@ -9,14 +9,14 @@ export function deleteExplorerScreen() {
     <span class="avatar big-av"><img src="${avatarFace(e.avatar)}" alt=""></span><b>${esc(e.name)}</b></label>`).join('');
   return {
     title: 'Delete a rescuer',
-    html: `<div class="screen center-screen scroll">${topbar({ back: '#/who', backLabel: 'Back', title: '', h1: false, profile: false })}<div class="logo sm" aria-label="RoboRescue">Robo<span>Rescue</span></div>
+    html: `<div class="screen flow scroll">${topbar({ back: '#/who', backLabel: 'Back', title: '', h1: false, profile: false })}<div class="flowbody"><div class="brandtext" aria-label="RoboRescue">Robo<b>Rescue</b></div>
       <h1 class="big-title">Grown-ups only</h1>
       <p class="note">Deleting removes that rescuer's stars and badges from this device. It cannot be undone.</p>
       <div class="picks">${list}</div>
       <div class="card pad check"><label for="ans" class="eyebrow">To continue, what is ${a} + ${b}?</label>
         <input id="ans" class="field short" inputmode="numeric" autocomplete="off"></div>
       <button class="btn red" id="del" disabled>Delete rescuer</button>
-      <a class="btn ghost small" href="#/who">Back</a></div>`,
+      <a class="btn ghost small" href="#/who">Back</a></div></div>`,
     mount(root) {
       const ans = root.querySelector('#ans'), del = root.querySelector('#del');
       const ok = () => { del.disabled = !(+ans.value === a + b && root.querySelector('input[name=who]:checked')); };
