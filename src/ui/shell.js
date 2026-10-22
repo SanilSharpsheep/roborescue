@@ -15,9 +15,9 @@ export function shell(active, inner, { scroll = true } = {}) {
   const e = current();
   const nav = NAV.map(([href, label, ic]) =>
     `<a href="#${href}" ${href === active ? 'aria-current="page"' : ''}>${ic}<span>${label}</span></a>`).join('');
-  const who = e ? `<a class="who" href="#/who" aria-label="Switch rescuer">
+  const who = e ? `<a class="who" href="#/who" aria-label="Profile menu: log out or start over">
       <span class="dot"><img src="${avatarFace(e.avatar)}" alt=""></span>
-      <span><b>${esc(e.name)}</b><small>Switch rescuer</small></span></a>` : '';
+      <span><b>${esc(e.name)}</b><small>Profile ▾</small></span></a>` : '';
   return `<div class="screen shell">
     <aside class="rail"><div class="brand">Robo<b>Rescue</b></div><nav aria-label="Main">${nav}</nav>${who}</aside>
     <main class="main ${scroll ? 'scroll' : ''}">${inner}</main></div>`;

@@ -403,3 +403,7 @@
 .whobtn { display: inline-flex; flex-direction: column; align-items: center; gap: .15rem; text-decoration: none; color: var(--blue-dark, #1c4f9c); font-weight: 800; min-width: 44px; }
 .whobtn small { font-size: .8rem; background: #fff; border: 2px solid #c9d9ee; border-radius: 999px; padding: 0 .5rem; }
 .leavebox .btn.danger { color: #a82e20; border-color: #a82e20; }
+.profilebox { min-width: min(22rem, 90vw); }
+.profbtns { display: flex; flex-direction: column; gap: .7rem; align-items: stretch; margin-top: .8rem; }
+.profbtns .btn { width: 100%; justify-content: center; }
+button.who { cursor: pointer; }

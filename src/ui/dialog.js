@@ -19,3 +19,18 @@ export function grownUpDialog({ title, text, yes }) {
     ans.focus();
   });
 }
+
+// Simple two-button question for a kid's own choices (no sum). The safe button is big and comes first.
+export function confirmDialog({ title, text, keep, yes }) {
+  return new Promise((resolve) => {
+    const w = document.createElement('div'); w.className = 'leavewrap';
+    w.innerHTML = `<div class="leavebox" role="dialog" aria-modal="true" aria-labelledby="cdt"><h2 id="cdt">${title}</h2><p>${text}</p>
+      <div class="row"><button type="button" class="btn blue" id="cdkeep">${keep}</button><button type="button" class="btn ghost danger small" id="cdyes">${yes}</button></div></div>`;
+    document.body.appendChild(w);
+    const done = (v) => { w.remove(); resolve(v); };
+    w.querySelector('#cdkeep').onclick = () => done(false);
+    w.querySelector('#cdyes').onclick = () => done(true);
+    w.addEventListener('keydown', (e) => { if (e.key === 'Escape') done(false); });
+    w.querySelector('#cdkeep').focus();
+  });
+}

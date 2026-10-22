@@ -26,7 +26,7 @@ export function home() {
   return {
     title: 'Home',
     html: shell('/home', `
-      <header class="pagehead"><a class="whobtn" href="#/who" aria-label="Switch rescuer"><span class="avatar" style="width:4.5rem;height:4.5rem"><img src="${avatarFace(e.avatar)}" alt=""></span><small>Switch</small></a>
+      <header class="pagehead"><a class="whobtn" href="#/who" aria-label="Profile menu: log out or start over"><span class="avatar" style="width:4.5rem;height:4.5rem"><img src="${avatarFace(e.avatar)}" alt=""></span><small>Profile</small></a>
         <div><h1>Hi, ${esc(e.name)}!</h1><p>Ready to build a rescue robot?</p></div>
         <button type="button" class="btn ghost small" id="howto" style="margin-left:auto;margin-right:3.8rem">How to play</button></header>
       <div class="homegrid">

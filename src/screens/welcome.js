@@ -1,6 +1,6 @@
 import { icon } from '../ui/icons.js';
 import { art } from '../ui/util.js';
-import { explorers, selectExplorer } from '../state.js';
+import { explorers, current } from '../state.js';
 import { go } from '../router.js';
 
 export function welcome() {
@@ -17,7 +17,7 @@ export function welcome() {
       root.querySelector('#play').onclick = () => {
         const list = explorers();
         if (!list.length) go('/new');
-        else if (list.length === 1) { selectExplorer(list[0].id); go('/home'); }
+        else if (current()) go('/home'); // still logged in on this device
         else go('/who');
       };
     },
