@@ -1,5 +1,6 @@
 import { sayBtn } from '../ui/speak.js';
 import { shell } from '../ui/shell.js';
+import { topbar } from '../ui/topbar.js';
 import { esc, art, avatarFace, emoji } from '../ui/util.js';
 import { markGuideSeen, current, nextMission, totalStars, levelOf, starsToNext } from '../state.js';
 import { BADGES } from '../data/badges.js';
@@ -26,9 +27,7 @@ export function home() {
   return {
     title: 'Home',
     html: shell('/home', `
-      <header class="pagehead"><span class="avatar" style="width:4.5rem;height:4.5rem"><img src="${avatarFace(e.avatar)}" alt=""></span>
-        <div><h1>Hi, ${esc(e.name)}!</h1><p>Ready to build a rescue robot?</p></div>
-        <button type="button" class="btn ghost small" id="howto" style="margin-left:auto;margin-right:3.8rem">How to play</button></header>
+      ${topbar({ title: `Hi, ${e.name}!`, sub: '<p>Ready to build a rescue robot?</p>', actions: '<button type="button" class="btn ghost small" id="howto" aria-label="How to play"><span class="hp-l">How to play</span><span class="hp-q">?</span></button>' })}
       <div class="homegrid">
         ${mission}
         <div class="card pad level"><p class="eyebrow">Your level</p><h2>Level ${levelOf(e)}</h2>

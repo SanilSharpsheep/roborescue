@@ -6,6 +6,7 @@ import { MOVES, SENSORS, NEUTRAL_BOT, partById } from '../game/parts.js';
 import { defOf } from '../game/registry.js';
 import { session } from '../game/session.js';
 import { go } from '../router.js';
+import { topbar } from '../ui/topbar.js';
 import { sayBtn } from '../ui/speak.js';
 import { sounds } from '../ui/sound.js';
 
@@ -20,7 +21,7 @@ export function play({ id }) {
   return {
     title: 'Test your bot',
     html: `<div class="screen playscreen">
-      <div class="playmain"><header class="playbar"><a class="btn ghost small" href="#/missions">Leave mission</a><a class="btn ghost small" href="#/home" aria-label="Home">Home</a><b>Mission: ${esc(m.title)}</b><button type="button" class="btn ghost small" id="skip" style="margin-left:auto;margin-right:3.8rem">Skip ▸▸</button></header>
+      <div class="playmain">${topbar({ back: '#/missions', backLabel: 'Leave mission', title: 'Mission: ' + m.title, h1: false, profile: false, actions: '<button type="button" class="btn ghost small" id="skip">Skip ▸▸</button>' })}
         <div class="stage card"><p id="loading" class="loadmsg" role="status">Getting your mission ready&hellip;</p><canvas id="cv" aria-label="Your robot trying the mission" role="img"></canvas><canvas id="fx" aria-hidden="true"></canvas><div id="banner" class="banner" hidden></div></div></div>
       <aside class="playside">
         <div class="card pad meters"><div class="meter"><span>Energy</span><div class="bar"><i id="e" style="width:0"></i></div><b id="et">${out.energy} of 5</b></div>
@@ -56,7 +57,7 @@ async function run(root, id, b, out, def) {
   };
   fit(); addEventListener('resize', fit);
   // Leaving in the middle of a test run asks first, so one accidental tap does not lose the run.
-  root.querySelectorAll('.playbar a').forEach((leave) => leave.addEventListener('click', (ev) => {
+  root.querySelectorAll('.topbar a').forEach((leave) => leave.addEventListener('click', (ev) => {
     if (finished) return;
     ev.preventDefault();
     const w = document.createElement('div'); w.className = 'leavewrap';

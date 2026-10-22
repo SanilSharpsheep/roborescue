@@ -10,9 +10,11 @@ export async function startOver() {
 }
 export function doLogout() { logout(); go('/who'); }
 
+export const profileHtml = () => { const e = current(); return e ? `<button type="button" class="profbtn" aria-label="Profile menu for ${esc(e.name)}: log out or start over"><span class="avatar"><img src="${avatarFace(e.avatar)}" alt=""></span></button>` : ''; };
+
 export function mountProfile() {
   addEventListener('click', (ev) => {
-    const t = ev.target.closest('.who, .whobtn'); if (!t) return;
+    const t = ev.target.closest('.profbtn'); if (!t) return;
     ev.preventDefault();
     const e = current(); if (!e) return;
     const w = document.createElement('div'); w.className = 'leavewrap';

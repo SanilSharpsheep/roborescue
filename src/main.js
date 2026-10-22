@@ -47,6 +47,7 @@ setRenderer((handler, params, path) => {
   app.scrollTop = 0;
   window.scrollTo(0, 0);
   if (out.mount) out.mount(app);
+  ensureMute();
   document.title = (out.title ? out.title + ' · ' : '') + 'RoboRescue';
   const h = app.querySelector('h1'); if (h) { h.setAttribute('tabindex', '-1'); }
 });
@@ -67,7 +68,7 @@ route('/settings', settingsScreen);
 
 import { unlockAudio, clickSounds } from './ui/sound.js';
 import { startMusic } from './ui/music.js';
-import { mountMute } from './ui/mute.js';
+import { mountMute, ensureMute } from './ui/mute.js';
 import { mountSpeak } from './ui/speak.js';
 import { mountProfile } from './ui/profile.js';
 unlockAudio();

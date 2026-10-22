@@ -1,4 +1,5 @@
 import { shell } from '../ui/shell.js';
+import { topbar } from '../ui/topbar.js';
 import { art, esc } from '../ui/util.js';
 import { sayBtn } from '../ui/speak.js';
 import { icon } from '../ui/icons.js';
@@ -40,9 +41,7 @@ export function build({ id }) {
   return {
     title: 'Build your bot',
     html: shell('/missions', `
-      <header class="pagehead"><a class="roundbtn" href="#/missions" aria-label="Back to missions">${icon.back}</a>
-        <div><h1>Build Your Rescue Bot</h1><span class="pill lvl">${esc(m.level)} · ${esc(m.title)}</span></div>
-        </header>
+      ${topbar({ back: '#/missions', backLabel: 'Back to missions', title: 'Build Your Rescue Bot', sub: `<span class="pill lvl">${esc(m.level)} · ${esc(m.title)}</span>` })}
       <div class="buildgrid">
         <section class="card previewcard" aria-label="Your bot"><div id="prev"></div></section>
         <div class="partscol">
