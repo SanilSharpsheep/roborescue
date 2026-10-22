@@ -22,7 +22,7 @@ export function result({ id }) {
     title: 'Great job!',
     html: shell('/missions', `${topbar({ back: '#/missions', backLabel: 'Back to missions', title: m.title, h1: false })}<div class="resultgrid">
       <section class="card pad resmain"><img class="mascot" src="${art('mascot/cheer.webp')}" alt="">
-        <h1>Great job!</h1><p class="lead">${esc(def.winTitle)}</p><div class="rstars" aria-label="${out.stars} of 3 stars">${stars}</div><p class="sm">${esc(tip)}</p>
+        <h1>Great job, ${esc(e.name)}!</h1><p class="lead">${esc(def.winTitle)}</p><div class="rstars" aria-label="${out.stars} of 3 stars">${stars}</div><p class="sm">${esc(tip)}</p>
         <div class="stats"><div><span class="eyebrow">Energy</span><b>${out.energy} of 5</b></div><div><span class="eyebrow">Safety</span><b>${out.safety} of 5</b></div><div><span class="eyebrow">Time</span><b>${fmtTime(out.time)}</b></div></div>
         <p class="sm dim">Time is just for fun. It does not change your stars.</p>
         ${m.animal ? `<div class="animalnote"><img src="${art(m.animal.img)}" alt=""><p class="sm"><b>Inspired by the ${esc(m.animal.name.toLowerCase())}.</b> ${esc(m.animal.fact)}</p></div>` : ''}</section>
