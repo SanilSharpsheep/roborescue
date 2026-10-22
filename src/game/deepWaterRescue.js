@@ -36,13 +36,10 @@ export const deepWaterRescue = {
   previewImg: { fins: 'bots/manta-three-quarter.webp', octo: 'bots/builder-bot-soft-arms.webp' },
   hint: 'It is dark and deep. One sensor uses sound to find things. Another can tell when the water gets too deep. And how would you hold a scared animal?',
   rules: [
-    { key: 'then', label: 'Rule 1', ifText: (b) => `${name(b.sense[0], 'A sensor')} finds the trapped animal`, ask: () => 'Your bot found a trapped turtle! What should it do?', after: { gentle: 'Gentle arms are kind to animals!', pull: 'Fast, but it could hurt the turtle.' }, options: FREE },
+    { key: 'then', label: 'Rule 1', ifText: (b) => `${name(b.sense[0], 'A sensor')} finds the trapped animal`, options: FREE },
     {
       key: 'then2', label: 'Rule 2', available: (b) => b.sense.length > 1, lockedText: 'Pick a second sensor to open Rule 2.',
-      bonus: true,
-      ifText: (b) => (b.sense[1] === 'water' ? 'Water says it is too deep' : `${name(b.sense[1], 'A sensor')} finds danger`),
-      ask: (b) => (b.sense[1] === 'water' ? 'The water is too deep! What should your bot do?' : `${name(b.sense[1], 'Your second sensor')} found danger! What should your bot do?`),
-      after: { up: 'Safe! Swimming up keeps your bot out of deep water.', dive: 'Brave, but it uses more energy.' }, options: DEPTH,
+      ifText: (b) => (b.sense[1] === 'water' ? 'Water says it is too deep' : `${name(b.sense[1], 'A sensor')} finds danger`), options: DEPTH,
     },
   ],
   evaluate,

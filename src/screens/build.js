@@ -60,7 +60,6 @@ export function build({ id }) {
       const $ = (s) => root.querySelector(s);
       let lastPick = null; // id of the latest movement/sensor pick: only its sentence shows under the bot
       let clueN = 0;
-      let lastAfter = ''; // gecko's reaction to the latest Think choice
       const stepNow = () => (!b.move ? 1 : !b.sense.length ? 2 : 3);
       const needed = () => def.rules.filter((r) => r.options && (!r.available || r.available(b)));
       const rulesDone = () => needed().every((r) => touched[r.key]);
@@ -68,22 +67,17 @@ export function build({ id }) {
         def.rules.forEach((r, i) => {
           const box = root.querySelector(`[data-rule="${i}"]`);
           const avail = !r.available || r.available(b);
-          if (!avail) { box.innerHTML = `<p class="bonuscard"><span>➕ Add a second sensor for a bonus question</span></p>`; return; }
-          const q = r.ask ? r.ask(b) : r.ifText(b);
+          if (!avail) { box.innerHTML = `<p class="rulelabel">${r.label}</p><p class="sm dim locked">${icon.lock} ${esc(r.lockedText)}</p>`; return; }
+          const head = `<div class="rule"><span class="kw">IF</span><span class="slot fixed">${esc(r.ifText(b))}</span><span class="kw">THEN</span>${r.fixedThen ? `<span class="slot fixed">${esc(r.fixedThen)}</span>` : '<span class="slot fixed pickone">pick one:</span>'}</div>`;
           const opts = r.options ? `<div class="thenrow">${r.options.map((o) => `<button type="button" class="part thenopt" data-rule-key="${r.key}" data-then="${o.id}" aria-pressed="${touched[r.key] === o.id}" ${stepNow() < 3 ? 'disabled' : ''}><span class="tick">${icon.check}</span><span class="ico">${o.icon}</span><b>${esc(o.label)}</b><small>${esc(o.note)}</small></button>`).join('')}</div>` : '';
-          box.innerHTML = `${r.bonus ? '<p class="rulelabel">Bonus question</p>' : ''}<p class="thinkq" id="tq${i}">${esc(q)}</p>${sayBtn(`data-say-sel="#tq${i}"`)}${opts}`;
-          box.querySelectorAll('.thenopt').forEach((x) => (x.onclick = () => {
-            const o = r.options.find((y) => y.id === x.dataset.then);
-            lastAfter = (r.after && r.after[o.id]) || '';
-            if (!o.decoy) { b[r.key] = o.id; touched[r.key] = o.id; }
-            draw();
-          }));
+          box.innerHTML = `<p class="rulelabel">${def.rules.length > 1 ? r.label : ''}</p>${head}${opts}`;
+          box.querySelectorAll('.thenopt').forEach((x) => (x.onclick = () => { b[x.dataset.ruleKey] = x.dataset.then; touched[x.dataset.ruleKey] = x.dataset.then; draw(); }));
         });
       };
       const draw = () => {
         const mv = partById(MOVES, b.move), ses = b.sense.map((x) => partById(SENSORS, x));
         const step = stepNow(), done = step === 3 && rulesDone();
-        $('#prev').innerHTML = botPreview(mv, ses[0]) + `<p class="selnote" aria-live="polite">${esc(EXPLAIN[lastPick] || '')}</p><div class="guide"><img src="${art('mascot/point.webp')}" alt=""><p class="bubble" aria-live="polite">${esc(step === 3 && lastAfter ? (done ? `${lastAfter} Press TEST MY BOT!` : lastAfter) : done ? 'Your bot is ready! Press TEST MY BOT.' : MSG[step])}</p>${sayBtn('data-say-sel=".selnote, .bubble"')}</div>`;
+        $('#prev').innerHTML = botPreview(mv, ses[0]) + `<p class="selnote" aria-live="polite">${esc(EXPLAIN[lastPick] || '')}</p><div class="guide"><img src="${art('mascot/point.webp')}" alt=""><p class="bubble" aria-live="polite">${esc(done ? 'Your bot is ready! Press TEST MY BOT.' : MSG[step])}</p>${sayBtn('data-say-sel=".selnote, .bubble"')}</div>`;
         drawRules();
         $('#test').disabled = !done;
         $('#ready').textContent = done ? `Ready: ${def.summary(b)}` : ''; // step hints live in the gecko's bubble only, so they are not repeated here
@@ -100,7 +94,7 @@ export function build({ id }) {
         if (x.dataset.kind === 'move') { b.move = x.dataset.id; lastPick = b.move; }
         else if (b.sense.includes(x.dataset.id)) { b.sense = b.sense.filter((s) => s !== x.dataset.id); lastPick = b.sense.length ? b.sense[b.sense.length - 1] : b.move; }
         else { b.sense = [...b.sense, x.dataset.id].slice(-def.maxSense); lastPick = x.dataset.id; }
-        lastAfter = ''; hideIntro(); draw();
+        hideIntro(); draw();
       }));
       // ---- Help me choose: one button, content follows the active step ----
       const hideIntro = () => { if (!$('#helpintro').hidden) { $('#helpintro').hidden = true; } markSeen(); };
@@ -121,7 +115,7 @@ export function build({ id }) {
           return { clue: def.hint, more: false, list };
         }
         const multi = def.rules.filter((r) => r.options && (!r.available || r.available(b))).length > 1;
-        list = def.rules.filter((r) => r.options && (!r.available || r.available(b))).map((r) => (multi ? `<li class="hgroup">${esc(r.ask ? r.ask(b) : r.ifText(b))}</li>` : '') + r.options.map((o) => `<li class="hcard"><b>${o.icon} ${esc(o.label)}</b><span>${esc(THINK_HELP[o.id] || o.note)}</span></li>`).join('')).join('');
+        list = def.rules.filter((r) => r.options && (!r.available || r.available(b))).map((r) => (multi ? `<li class="hgroup">${esc(r.label)}: ${esc(r.ifText(b))}</li>` : '') + r.options.map((o) => `<li class="hcard"><b>${o.icon} ${esc(o.label)}</b><span>${esc(THINK_HELP[o.id] || o.note)}</span></li>`).join('')).join('');
         return { clue: '', more: false, list };
       };
       let opener = null, onKey = null;
