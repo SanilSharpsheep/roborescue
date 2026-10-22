@@ -489,3 +489,20 @@ button.who { cursor: pointer; }
   .buildgrid:has(.think.two) .thenopt { min-height: 2.3rem; }
   .think.two .rule { margin: .2rem 0 .35rem; }
 }
+
+/* Step 3: more air around the dotted divider and under each IF line */
+@media (min-width: 900px) {
+  .think.two .rule { margin: .3rem 0 .7rem; }
+  .buildgrid:has(.think.two) .thenrow { margin: 0 0 .5rem; }
+  .buildgrid:has(.think.two) .rulebox + .rulebox { margin-top: .5rem; padding-top: .75rem; }
+  .buildgrid:has(.think.two) .rulebox:last-child .thenrow { margin-bottom: .1rem; }
+}
+@media (min-width: 900px) and (max-height: 720px) {
+  .think.two .rule { margin: .2rem 0 .5rem; }
+  .buildgrid:has(.think.two) .thenrow { margin-bottom: .35rem; }
+  .buildgrid:has(.think.two) .rulebox + .rulebox { margin-top: .35rem; padding-top: .55rem; }
+}
+@media (min-width: 900px) {
+  .buildgrid:has(.think.two) .part:not(.thenopt) { min-height: 4rem; } .buildgrid:has(.think.two) .part:not(.thenopt) img { height: 2.3rem; }
+  .buildgrid:has(.think.two) .partscol { gap: .55rem; }
+}
