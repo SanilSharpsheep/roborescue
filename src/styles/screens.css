@@ -549,3 +549,13 @@ button.who { cursor: pointer; }
 }
 @media (min-width: 900px) { .buildgrid:has(.think.two) .rulebox:first-of-type .thenrow { margin-bottom: 1.2rem; } .buildgrid:has(.think.two) .rulebox + .rulebox { padding-top: .6rem; } }
 @media (min-width: 900px) and (max-height: 720px) { .buildgrid:has(.think.two) .rulebox:first-of-type .thenrow { margin-bottom: .9rem; } }
+/* Phones: centred level badge text, tidier header */
+@media (max-width: 699px) {
+  .topbar .pill.lvl, .tbmain .pill.lvl { display: inline-flex; align-items: center; justify-content: center; height: 1.9rem; padding: 0 .85rem; line-height: 1; font-size: .78rem; letter-spacing: .03em; }
+  .topbar .pill.lvl .pt { display: inline; }
+  .topbar:has(.pill.lvl) { column-gap: .75rem; row-gap: .6rem; margin-bottom: .2rem; }
+  .topbar:has(.pill.lvl) h1 { font-size: clamp(.9rem, 4.4vw, 1.2rem); line-height: 1.15; }
+  .topbar:has(.pill.lvl) .tbright { gap: .35rem; }
+  .topbar:has(.pill.lvl) .roundbtn { width: 3rem; height: 3rem; }
+  .topbar:has(.pill.lvl) .mutebtn, .topbar:has(.pill.lvl) .profbtn { width: 2.9rem; height: 2.9rem; }
+}
