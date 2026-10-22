@@ -8,7 +8,10 @@ export async function startOver() {
   const e = current(); if (!e) return;
   if (await confirmDialog({ title: 'Start your adventure over?', text: 'You will lose your stars and badges. This cannot be undone.', keep: 'Keep my stars', yes: 'Start over' })) { resetProgress(e.id); render(); }
 }
-export function doLogout() { logout(); go('/who'); }
+export async function doLogout() {
+  const e = current(); if (!e) return;
+  if (await confirmDialog({ title: 'Log out?', text: `${e.name}, your stars and badges are saved. You can come back any time.`, keep: 'Stay here', yes: 'Log out' })) { logout(); go('/'); }
+}
 
 export const profileHtml = () => { const e = current(); return e ? `<button type="button" class="profbtn" aria-label="Profile menu for ${esc(e.name)}: log out or start over"><span class="avatar"><img src="${avatarFace(e.avatar)}" alt=""></span></button>` : ''; };
 
