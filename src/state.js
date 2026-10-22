@@ -53,6 +53,7 @@ export function deleteExplorer(id) {
   if (state.current === id) state.current = null;
   save();
 }
+export function clearAllExplorers() { state.explorers = []; state.current = null; save(); }
 export function resetProgress(id) {
   const e = explorerById(id);
   if (e) { e.progress = {}; e.badges = []; save(); }
