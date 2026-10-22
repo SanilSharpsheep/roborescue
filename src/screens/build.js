@@ -80,7 +80,7 @@ export function build({ id }) {
         $('#prev').innerHTML = botPreview(mv, ses[0]) + `<p class="selnote" aria-live="polite">${esc(EXPLAIN[lastPick] || '')}</p><div class="guide"><img src="${art('mascot/point.webp')}" alt=""><p class="bubble" aria-live="polite">${esc(done ? 'Your bot is ready! Press TEST MY BOT.' : MSG[step])}</p>${sayBtn('data-say-sel=".selnote, .bubble"')}</div>`;
         drawRules();
         $('#test').disabled = !done;
-        $('#ready').textContent = done ? `Ready: ${def.summary(b)}` : MSG[step];
+        $('#ready').textContent = done ? `Ready: ${def.summary(b)}` : ''; // step hints live in the gecko's bubble only, so they are not repeated here
         root.querySelectorAll('.part[data-kind]').forEach((x) => {
           const on = x.dataset.kind === 'move' ? b.move === x.dataset.id : b.sense.includes(x.dataset.id);
           x.setAttribute('aria-pressed', on);
@@ -98,7 +98,7 @@ export function build({ id }) {
       }));
       // ---- Help me choose: one button, content follows the active step ----
       const hideIntro = () => { if (!$('#helpintro').hidden) { $('#helpintro').hidden = true; } markSeen(); };
-      if (!seen()) $('#helpintro').hidden = false;
+      markSeen(); // the "Not sure which part?" pop-up repeated the Help button, so it is no longer shown
       $('#introx').onclick = hideIntro;
       const card = (p, picked) => `<li class="hcard"><b>${esc(p.name)}</b><span>${esc(p.description)}</span><span class="best"><em>${esc(HELP_TEXT.bestFor)}</em> ${esc(p.bestFor)}</span></li>`;
       const helpBody = () => {
