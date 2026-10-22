@@ -46,7 +46,7 @@ export function build({ id }) {
       <div class="buildgrid">
         <section class="card previewcard" aria-label="Your bot"><div id="prev"></div></section>
         <div class="partscol">
-          <ol class="steps" aria-label="Build steps"><li data-step="1"><span class="n blue">1</span>Move</li><li data-step="2"><span class="n green">2</span>Sense</li><li data-step="3"><span class="n purple">3</span>Think</li></ol>
+          <div class="stepsrow"><ol class="steps" aria-label="Build steps"><li data-step="1"><span class="n blue">1</span>Move</li><li data-step="2"><span class="n green">2</span>Sense</li><li data-step="3"><span class="n purple">3</span>Think</li></ol><button type="button" class="helpbtn" id="helpbtn" aria-haspopup="dialog">${esc(HELP_TEXT.button)}</button></div>
           <section class="card pad stepcard" data-step="1"><p class="eyebrow"><span class="n blue">1</span> Movement parts</p>
             <div class="partrow">${def.moves.map((x) => partBtn('move', partById(MOVES, x))).join('')}</div></section>
           <section class="card pad stepcard" data-step="2"><p class="eyebrow"><span class="n green">2</span> Sensors${def.maxSense > 1 ? ` <span class="pickn">pick up to ${def.maxSense}</span>` : ''}</p>
@@ -55,7 +55,7 @@ export function build({ id }) {
             ${rules}</section>
         </div>
       </div>
-      <footer class="buildbar"><a class="btn ghost small" href="#/missions">Back</a><span class="readywrap"><span id="ready" aria-live="polite"></span><button type="button" class="helpbtn" id="helpbtn" aria-haspopup="dialog">${esc(HELP_TEXT.button)}</button><div class="helpintro" id="helpintro" hidden><span>${esc(HELP_TEXT.intro)}</span><button type="button" id="introx" aria-label="Close tip">×</button></div></span>
+      <footer class="buildbar"><a class="btn ghost small" href="#/missions">Back</a><span class="readywrap"><span id="ready" aria-live="polite"></span><div class="helpintro" id="helpintro" hidden><span>${esc(HELP_TEXT.intro)}</span><button type="button" id="introx" aria-label="Close tip">×</button></div></span>
         <button type="button" class="btn blue" id="test" disabled>TEST MY BOT</button></footer>`, { scroll: false }),
     mount(root) {
       const $ = (s) => root.querySelector(s);
