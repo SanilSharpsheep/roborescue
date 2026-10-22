@@ -31,7 +31,7 @@ const NEEDS_EXPLORER = (p) => ['/home', '/worlds', '/missions', '/badges', '/set
 function guard(path) {
   if (NEEDS_EXPLORER(path) && !current()) {
     const n = explorers().length;
-    return n === 0 ? '/' : n === 1 ? '/home' : '/who';
+    return n === 0 ? '/' : '/who';
   }
   return null;
 }
@@ -69,10 +69,12 @@ import { unlockAudio, clickSounds } from './ui/sound.js';
 import { startMusic } from './ui/music.js';
 import { mountMute } from './ui/mute.js';
 import { mountSpeak } from './ui/speak.js';
+import { mountProfile } from './ui/profile.js';
 unlockAudio();
 startMusic();
 mountMute();
 mountSpeak();
+mountProfile();
 clickSounds();
 applySettings();
 start();
