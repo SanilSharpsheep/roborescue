@@ -360,3 +360,16 @@
 .botintro { display: flex; align-items: center; gap: .6rem; margin-top: .8rem; padding-top: .8rem; border-top: 2px dashed #e8dcc0; text-align: left; }
 .botintro img { width: 72px; height: 72px; object-fit: contain; flex: none; }
 .botintro p { margin: 0; font-size: .95rem; line-height: 1.3; color: #2b3d63; }
+
+/* Speaker button, top-right on every screen */
+.mutebtn { position: fixed; top: .6rem; right: .6rem; z-index: 50; width: 3.2rem; height: 3.2rem; min-width: 44px; min-height: 44px; display: grid; place-items: center; border-radius: 50%; border: 3px solid var(--navy); background: #fff; color: var(--navy); cursor: pointer; box-shadow: 0 3px 0 rgba(15,54,117,.35); padding: 0; }
+.mutebtn svg { width: 60%; height: 60%; }
+.mutebtn:focus-visible { outline: 4px solid var(--yellow); outline-offset: 2px; }
+
+/* Leave-mission check */
+.leavewrap { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; background: rgba(10,38,92,.55); padding: 1rem; }
+.leavebox { background: var(--cream, #fff8e6); border: 4px solid #e8dcc0; border-radius: 1.4rem; padding: 1.4rem 1.6rem; max-width: 26rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.leavebox h2 { font-size: 2rem; color: var(--navy); }
+.leavebox p { margin: .5rem 0 1rem; font-size: 1.15rem; color: var(--ink-soft); }
+.leavebox .row { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+.steps { margin-right: 3.8rem; }

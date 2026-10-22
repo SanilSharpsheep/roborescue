@@ -53,6 +53,18 @@ async function run(root, id, b, out, def) {
     cv.width = Math.max(320, r.width * d); cv.height = Math.max(180, r.height * d);
   };
   fit(); addEventListener('resize', fit);
+  // Leaving in the middle of a test run asks first, so one accidental tap does not lose the run.
+  const leave = root.querySelector('.playbar a');
+  if (leave) leave.addEventListener('click', (ev) => {
+    if (finished) return;
+    ev.preventDefault();
+    const w = document.createElement('div'); w.className = 'leavewrap';
+    w.innerHTML = '<div class="leavebox" role="dialog" aria-modal="true" aria-labelledby="lvt"><h2 id="lvt">Leave the mission?</h2><p>Your bot is still testing. If you leave, the test stops.</p><div class="row"><button type="button" class="btn blue" id="stay">Stay</button><button type="button" class="btn ghost" id="lv">Leave</button></div></div>';
+    root.appendChild(w);
+    w.querySelector('#stay').focus();
+    w.querySelector('#stay').onclick = () => w.remove();
+    w.querySelector('#lv').onclick = () => { w.remove(); go('/missions'); };
+  });
   const DUR = reduce ? 1200 : 9000;
   const goal = out.ok ? 1 : out.progress / 100;
   let t0 = null, finished = false;

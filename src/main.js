@@ -1,3 +1,10 @@
+import '@fontsource/baloo-2/latin-600.css';
+import '@fontsource/baloo-2/latin-700.css';
+import '@fontsource/baloo-2/latin-800.css';
+import '@fontsource/nunito/latin-400.css';
+import '@fontsource/nunito/latin-600.css';
+import '@fontsource/nunito/latin-700.css';
+import '@fontsource/nunito/latin-800.css';
 import './styles/base.css';
 import './styles/screens.css';
 import { route, setRenderer, start, go } from './router.js';
@@ -60,8 +67,10 @@ route('/settings', settingsScreen);
 
 import { unlockAudio, clickSounds } from './ui/sound.js';
 import { startMusic } from './ui/music.js';
+import { mountMute } from './ui/mute.js';
 unlockAudio();
 startMusic();
+mountMute();
 clickSounds();
 applySettings();
 start();
