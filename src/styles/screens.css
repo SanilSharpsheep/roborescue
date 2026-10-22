@@ -477,3 +477,15 @@ button.who { cursor: pointer; }
   .buildgrid:has(.think.two) .partscol .pad { padding: .35rem .8rem; }
   .buildgrid:has(.think.two) .botstage { max-height: 40vh; }
 }
+
+/* Step 3 spacing: a little air between the IF line and its buttons */
+@media (min-width: 900px) {
+  .buildgrid:has(.think.two) .thenopt { min-height: 2.5rem; padding: .2rem .5rem; }
+  .think.two .rule { margin: .3rem 0 .45rem; }
+  .buildgrid:has(.think.two) .thenrow { margin: .1rem 0 .3rem; gap: .6rem; }
+  .buildgrid:has(.think.two) .rulebox + .rulebox { margin-top: .35rem; padding-top: .45rem; }
+}
+@media (min-width: 900px) and (max-height: 720px) {
+  .buildgrid:has(.think.two) .thenopt { min-height: 2.3rem; }
+  .think.two .rule { margin: .2rem 0 .35rem; }
+}
