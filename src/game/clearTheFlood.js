@@ -40,7 +40,9 @@ export const clearTheFlood = {
   rules: [{
     key: 'then', label: 'Rule 1',
     ifText: (b) => `${name(b.sense[0], 'A sensor')} finds a blockage`,
-    options: THEN, note: 'Rule 2 opens in Mission 2.',
+    ask: () => 'Your bot found a blockage! What should it do?',
+    after: { push: 'Fast! But a hard push can be risky.', nudge: 'Gentle and safe. Nice thinking!' },
+    options: THEN,
   }],
   evaluate,
   summary: (b) => `${label(b.move)}, ${b.sense.join(' + ')} and 1 rule`,
