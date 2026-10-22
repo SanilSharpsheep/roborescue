@@ -30,12 +30,23 @@ export const inspectTheBridge = {
   previewImg: { gecko: 'bots/gecko-three-quarter.webp' },
   hint: 'Cracks can be tiny. Which sensor uses sound to find them? And which one warns you if the water rises?',
   rules: [
-    { key: 'rule1', label: 'Rule 1', ifText: (b) => `${name(b.sense[0], 'A sensor')} finds a crack`, fixedThen: 'Mark it' },
+    {
+      key: 'rule1', label: 'Rule 1', ifText: (b) => `${name(b.sense[0], 'A sensor')} finds a crack`,
+      ask: () => 'Your bot found a crack! What should it do?',
+      after: { mark: 'Yes! Marking it tells the engineers where to fix.', ignore: 'Hmm, then nobody would know where the crack is. Try again!' },
+      options: [
+        { id: 'mark', icon: '📍', label: 'Mark it', note: 'Tell the engineers where it is.' },
+        { id: 'ignore', icon: '🙈', label: 'Ignore it', note: 'Keep moving.', decoy: true },
+      ],
+    },
     {
       key: 'then2', label: 'Rule 2', available: (b) => b.sense.length > 1,
       lockedText: 'Pick a second sensor to open Rule 2.',
+      bonus: true,
       ifText: (b) => (b.sense[1] === 'water' ? 'Water feels the flood rising' : `${name(b.sense[1], 'A sensor')} finds danger`),
-      options: RULE2, note: 'Tip: which sensor can tell the water is rising?',
+      ask: (b) => (b.sense[1] === 'water' ? 'The water is rising! What should your bot do?' : `${name(b.sense[1], 'Your second sensor')} found danger! What should your bot do?`),
+      after: { climb: 'Safe! Climbing higher gets out of the water.', work: 'Risky! Staying could get your bot wet.' },
+      options: RULE2,
     },
   ],
   evaluate,
