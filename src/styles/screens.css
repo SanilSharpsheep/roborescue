@@ -525,3 +525,16 @@ button.who { cursor: pointer; }
 }
 @media (max-width: 699px) { .tbmain .pill { font-size: .7rem; padding: .2rem .6rem; letter-spacing: .03em; white-space: nowrap; max-width: 100%; overflow: hidden; text-overflow: ellipsis; display: inline-block; } }
 @media (max-width: 480px) { .tbmain .pill .pt { display: none; } }
+/* Phones: title beside the buttons, full level pill on its own line underneath */
+@media (max-width: 699px) {
+  .topbar:has(.pill.lvl) { display: grid; grid-template-columns: auto 1fr auto; align-items: center; column-gap: .6rem; row-gap: .4rem; }
+  .topbar:has(.pill.lvl) .tbmain { display: contents; }
+  .topbar:has(.pill.lvl) h1 { grid-column: 2; grid-row: 1; min-width: 0; }
+  .topbar:has(.pill.lvl) .tbright { grid-column: 3; grid-row: 1; }
+  .topbar:has(.pill.lvl) .pill.lvl { grid-column: 1 / -1; grid-row: 2; justify-self: start; margin: 0; }
+}
+@media (max-width: 480px) { .tbmain .pill .pt { display: inline; } }
+@media (max-width: 699px) {
+  .topbar:has(.pill.lvl) h1 { font-size: clamp(.8rem, 3.9vw, 1.15rem); }
+  .topbar:has(.pill.lvl) .tbright { gap: .4rem; }
+}
