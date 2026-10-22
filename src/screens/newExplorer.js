@@ -3,6 +3,7 @@ import { icon } from '../ui/icons.js';
 import { esc, avatarFace, art } from '../ui/util.js';
 import { addExplorer, explorers } from '../state.js';
 import { go } from '../router.js';
+import { topbar } from '../ui/topbar.js';
 
 const NAMES = ['Sparky', 'Captain Fin', 'Splash', 'Nova', 'Dash'];
 const AVATARS = [1, 2, 3, 4];
@@ -12,7 +13,7 @@ export function newExplorer() {
   const chips = NAMES.map((n) => `<button class="chip" type="button">${esc(n)}</button>`).join('');
   return {
     title: 'Join the Rescue Team',
-    html: `<div class="screen center-screen scroll">${icon.leaves}
+    html: `<div class="screen center-screen scroll">${topbar({ back: explorers().length ? '#/who' : '#/', backLabel: 'Back', title: '', h1: false, profile: false })}<div class="logo sm" aria-label="RoboRescue">Robo<span>Rescue</span></div>
       <h1 class="big-title">Join the Rescue Team!</h1><p class="note" style="margin-top:-.4rem">Pick a name and face, then build a Rescue Bot to help!</p>
       <div class="newgrid">
         <div class="card pad">
@@ -30,7 +31,7 @@ export function newExplorer() {
           <div class="botintro"><img src="${art(NEUTRAL_BOT.img)}" alt=""><p>Meet your <b>Rescue Bot</b>! You will give it parts to save the day.</p></div></div>
       </div>
       <button class="btn huge" id="go" disabled>LET'S GO!</button>
-      ${explorers().length ? '<a class="link" href="#/who">← Back</a>' : '<a class="link" href="#/">← Back</a>'}</div>`,
+      <a class="btn ghost small" href="${explorers().length ? '#/who' : '#/'}">Back</a></div>`,
     mount(root) {
       let avatar = 1;
       const nm = root.querySelector('#nm'), go_ = root.querySelector('#go');
