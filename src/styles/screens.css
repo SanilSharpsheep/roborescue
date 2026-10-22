@@ -372,7 +372,7 @@
 .leavebox h2 { font-size: 2rem; color: var(--navy); }
 .leavebox p { margin: .5rem 0 1rem; font-size: 1.15rem; color: var(--ink-soft); }
 .leavebox .row { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
-.steps { margin-right: 3.8rem; }
+.steps { margin: 0; }
 
 /* Bigger tap targets for young fingers (about 48px or more) */
 .btn.small { min-height: 3.25rem; padding-left: 1.4rem; padding-right: 1.4rem; }
@@ -407,3 +407,4 @@
 .profbtns { display: flex; flex-direction: column; gap: .7rem; align-items: stretch; margin-top: .8rem; }
 .profbtns .btn { width: 100%; justify-content: center; }
 button.who { cursor: pointer; }
+.partscol > .steps { justify-content: space-between; flex: none; } .partscol > .steps li { flex: 1; justify-content: center; }

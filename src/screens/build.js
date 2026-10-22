@@ -42,10 +42,11 @@ export function build({ id }) {
     html: shell('/missions', `
       <header class="pagehead"><a class="roundbtn" href="#/missions" aria-label="Back to missions">${icon.back}</a>
         <div><h1>Build Your Rescue Bot</h1><span class="pill lvl">${esc(m.level)} · ${esc(m.title)}</span></div>
-        <ol class="steps" aria-label="Build steps"><li data-step="1"><span class="n blue">1</span>Move</li><li data-step="2"><span class="n green">2</span>Sense</li><li data-step="3"><span class="n purple">3</span>Think</li></ol></header>
+        </header>
       <div class="buildgrid">
         <section class="card previewcard" aria-label="Your bot"><div id="prev"></div></section>
         <div class="partscol">
+          <ol class="steps" aria-label="Build steps"><li data-step="1"><span class="n blue">1</span>Move</li><li data-step="2"><span class="n green">2</span>Sense</li><li data-step="3"><span class="n purple">3</span>Think</li></ol>
           <section class="card pad stepcard" data-step="1"><p class="eyebrow"><span class="n blue">1</span> Movement parts</p>
             <div class="partrow">${def.moves.map((x) => partBtn('move', partById(MOVES, x))).join('')}</div></section>
           <section class="card pad stepcard" data-step="2"><p class="eyebrow"><span class="n green">2</span> Sensors${def.maxSense > 1 ? ` <span class="pickn">pick up to ${def.maxSense}</span>` : ''}</p>
