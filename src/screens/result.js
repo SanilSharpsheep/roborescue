@@ -1,3 +1,4 @@
+import { topbar } from '../ui/topbar.js';
 import { shell } from '../ui/shell.js';
 import { esc, art, emoji } from '../ui/util.js';
 import { current, recordResult, isDone } from '../state.js';
@@ -19,7 +20,7 @@ export function result({ id }) {
   setTimeout(() => { for (let i = 0; i < out.stars; i++) setTimeout(() => sounds.star(i), i * 250 + 200); }, 50);
   return {
     title: 'Great job!',
-    html: shell('/missions', `<div class="resultgrid">
+    html: shell('/missions', `${topbar({ back: '#/missions', backLabel: 'Back to missions', title: m.title, h1: false })}<div class="resultgrid">
       <section class="card pad resmain"><img class="mascot" src="${art('mascot/cheer.webp')}" alt="">
         <h1>Great job!</h1><p class="lead">${esc(def.winTitle)}</p><div class="rstars" aria-label="${out.stars} of 3 stars">${stars}</div><p class="sm">${esc(tip)}</p>
         <div class="stats"><div><span class="eyebrow">Energy</span><b>${out.energy} of 5</b></div><div><span class="eyebrow">Safety</span><b>${out.safety} of 5</b></div><div><span class="eyebrow">Time</span><b>${fmtTime(out.time)}</b></div></div>
