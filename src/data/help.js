@@ -21,6 +21,14 @@ export const SENSE_HELP = [
 export const THINK_HELP = {
   push: 'Fast, but a strong push can be risky.',
   nudge: 'Slower, but safer around animals and fragile objects.',
+  mark: 'Drop a pin so the engineers know where the crack is. This is the helpful choice.',
+  ignore: 'The bot keeps moving, but nobody learns where the crack is.',
+  climb: 'Move up out of the rising water. Safest for your bot.',
+  work: 'Stay and keep going. Risky when the water is rising.',
+  gentle: 'Soft arms untangle the net slowly. Kind to the animal.',
+  pull: 'Quick, but it could hurt the animal.',
+  up: 'Swim to shallower water. Keeps your bot safe.',
+  dive: 'Go deeper to reach the target. Uses more energy.',
 };
 
 // Clues for the Move step, from a gentle nudge to a strong hint. The last one may name the part.
