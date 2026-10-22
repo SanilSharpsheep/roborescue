@@ -1,6 +1,6 @@
 import { shell } from '../ui/shell.js';
 import { esc, art, avatarFace, emoji } from '../ui/util.js';
-import { current, nextMission, totalStars, levelOf, starsToNext } from '../state.js';
+import { markGuideSeen, current, nextMission, totalStars, levelOf, starsToNext } from '../state.js';
 import { BADGES } from '../data/badges.js';
 
 const FACTS = [
@@ -26,7 +26,8 @@ export function home() {
     title: 'Home',
     html: shell('/home', `
       <header class="pagehead"><span class="avatar" style="width:4.5rem;height:4.5rem"><img src="${avatarFace(e.avatar)}" alt=""></span>
-        <div><h1>Hi, ${esc(e.name)}!</h1><p>Ready to build a rescue robot?</p></div></header>
+        <div><h1>Hi, ${esc(e.name)}!</h1><p>Ready to build a rescue robot?</p></div>
+        <button type="button" class="btn ghost small" id="howto" style="margin-left:auto;margin-right:3.8rem">How to play</button></header>
       <div class="homegrid">
         ${mission}
         <div class="card pad level"><p class="eyebrow">Your level</p><h2>Level ${levelOf(e)}</h2>
@@ -35,5 +36,31 @@ export function home() {
         <div class="card pad bcard"><p class="eyebrow">Your badges</p><ul class="badgegrid">${slots}</ul></div>
         <div class="card pad fact"><img src="${art('mascot/think.png')}" alt=""><div><p class="eyebrow">Did you know?</p><p>${esc(fact)}</p></div></div>
       </div>`),
+
+    mount(root) {
+      const STEPS = [
+        ['1', 'Pick a mission', 'Tap START on a mission. Each one is a problem to solve after a flood.'],
+        ['2', 'Build your Rescue Bot', 'Choose how it moves, what it senses, and what it does. Tap the parts you like.'],
+        ['3', 'Test it!', 'Watch your bot try the mission. If it gets stuck, change a part and try again.'],
+      ];
+      const open = () => {
+        let i = 0;
+        const w = document.createElement('div'); w.className = 'leavewrap';
+        const draw = () => {
+          const [n, t, d] = STEPS[i], last = i === STEPS.length - 1;
+          w.innerHTML = `<div class="leavebox guidebox" role="dialog" aria-modal="true" aria-labelledby="gt">
+            <img src="${art('mascot/point.png')}" alt="" class="guideimg">
+            <p class="eyebrow">Step ${n} of ${STEPS.length}</p><h2 id="gt">${t}</h2><p>${d}</p>
+            <div class="row"><button type="button" class="btn ghost small" id="gskip">Skip</button><button type="button" class="btn blue" id="gnext">${last ? "LET'S GO!" : 'NEXT'}</button></div></div>`;
+          w.querySelector('#gnext').focus();
+          w.querySelector('#gnext').onclick = () => { if (last) close(); else { i++; draw(); } };
+          w.querySelector('#gskip').onclick = close;
+        };
+        const close = () => { w.remove(); markGuideSeen(e.id); };
+        root.appendChild(w); draw();
+      };
+      root.querySelector('#howto').onclick = open;
+      if (!e.seenGuide) open();
+    },
   };
 }
