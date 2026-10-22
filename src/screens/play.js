@@ -19,7 +19,7 @@ export function play({ id }) {
   return {
     title: 'Test your bot',
     html: `<div class="screen playscreen">
-      <div class="playmain"><header class="playbar"><a class="btn ghost small" href="#/missions">Leave mission</a><b>Mission: ${esc(m.title)}</b></header>
+      <div class="playmain"><header class="playbar"><a class="btn ghost small" href="#/missions">Leave mission</a><b>Mission: ${esc(m.title)}</b><button type="button" class="btn ghost small" id="skip" style="margin-left:auto;margin-right:3.8rem">Skip ▸▸</button></header>
         <div class="stage card"><canvas id="cv" aria-label="Your robot trying the mission" role="img"></canvas><canvas id="fx" aria-hidden="true"></canvas><div id="banner" class="banner" hidden></div></div></div>
       <aside class="playside">
         <div class="card pad meters"><div class="meter"><span>Energy</span><div class="bar"><i id="e" style="width:0"></i></div><b id="et">${out.energy} of 5</b></div>
@@ -66,6 +66,8 @@ async function run(root, id, b, out, def) {
     w.querySelector('#lv').onclick = () => { w.remove(); go('/missions'); };
   });
   const DUR = reduce ? 1200 : 9000;
+  const skipBtn = root.querySelector('#skip');
+  skipBtn.onclick = () => { if (t0 !== null) t0 -= DUR; skipBtn.hidden = true; };
   const goal = out.ok ? 1 : out.progress / 100;
   let t0 = null, finished = false;
   const setMeters = (p) => {
@@ -98,7 +100,7 @@ async function run(root, id, b, out, def) {
     raf = requestAnimationFrame(frame);
   }
   function done() {
-    const bn = $('#banner'); bn.hidden = false;
+    const bn = $('#banner'); bn.hidden = false; skipBtn.hidden = true;
     if (out.ok) {
       bn.textContent = def.winBanner; bn.className = 'banner good'; sounds.success();
       $('#wincard').hidden = false; $('#cont').onclick = () => go('/quiz/' + id); $('#cont').focus();

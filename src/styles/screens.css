@@ -373,3 +373,22 @@
 .leavebox p { margin: .5rem 0 1rem; font-size: 1.15rem; color: var(--ink-soft); }
 .leavebox .row { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
 .steps { margin-right: 3.8rem; }
+
+/* Bigger tap targets for young fingers (about 48px or more) */
+.btn.small { min-height: 3.25rem; padding-left: 1.4rem; padding-right: 1.4rem; }
+.chip { min-height: 3rem; }
+.rail nav a, .nav a { min-height: 3.2rem; }
+.link { display: inline-flex; align-items: center; min-height: 3rem; padding: 0 .6rem; }
+.setrow input[type=checkbox] { width: 3.4rem; height: 2rem; }
+.guidebox { max-width: 30rem; }
+.guideimg { width: 7rem; height: auto; margin: 0 auto .3rem; display: block; }
+.playbar { flex-wrap: wrap; gap: .6rem; }
+.helpintro button, .helpintro .x, #introx, .introx { min-width: 2.75rem; min-height: 2.75rem; }
+@media (max-width: 699px) {
+  .pagehead { flex-wrap: wrap; }
+  #howto { margin: 0 !important; white-space: nowrap; }
+  #skip { margin-right: 3.8rem; white-space: nowrap; }
+}
+/* Long mission messages wrap instead of being cut off */
+.banner { white-space: normal; text-overflow: clip; text-align: center; line-height: 1.15; border-radius: 1.6rem; width: max-content; }
+@media (max-width: 699px) { .banner { font-size: 1.35rem; padding: .6rem 1.1rem; } }

@@ -33,6 +33,7 @@ const uid = () => Math.random().toString(36).slice(2, 10);
 
 export const getState = () => state;
 export const settings = () => state.settings;
+export function markGuideSeen(id) { const e = explorerById(id); if (e) { e.seenGuide = true; save(); } }
 export function setSetting(key, value) { state.settings[key] = value; if (key === 'music') state.settings.musicTouched = true; save(); }
 
 export const explorers = () => state.explorers;
