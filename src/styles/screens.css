@@ -133,7 +133,7 @@
 .part img { height: 3.8rem; width: auto; object-fit: contain; }
 .part .tick { display: none; position: absolute; top: -.6rem; right: -.6rem; width: 1.8rem; height: 1.8rem; border-radius: 50%; background: var(--blue); color: #fff; border: 2px solid #fff; place-items: center; }
 .part .tick svg { width: 1rem; height: 1rem; }
-.part[aria-pressed='true'] { border: 4px solid var(--blue); background: #eaf3ff; box-shadow: 0 0 0 4px rgba(35, 123, 229, .18); }
+.part[aria-pressed='true'] { border: 4px solid var(--blue); background: #eaf3ff; box-shadow: none; }
 .part[aria-pressed='true'] .tick { display: grid; }
 .rule { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: .5rem 0; font-size: 1.15rem; }
 .kw { font-family: var(--font-display); font-size: 1.4rem; color: var(--purple); }
@@ -270,7 +270,7 @@
 .bubble::before { content: ''; position: absolute; left: -.55rem; top: 50%; width: .8rem; height: .8rem; background: #fff; border: solid var(--cream-line); border-width: 0 0 3px 3px; transform: translateY(-50%) rotate(45deg); }
 .stepcard { transition: opacity .2s; }
 .stepcard.muted { opacity: .5; } .stepcard.muted .part { pointer-events: none; cursor: default; }
-.stepcard.active { box-shadow: 0 0 0 4px rgba(35, 123, 229, .22), var(--shadow, 0 6px 0 rgba(0,0,0,.06)); }
+.stepcard.active { box-shadow: none; }
 .steps li.active { border-color: var(--blue); background: #eaf3ff; color: var(--blue-dark); }
 .steps li.muted { opacity: .55; }
 .part:disabled { cursor: default; }
