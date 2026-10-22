@@ -6,6 +6,7 @@ import { MOVES, SENSORS, NEUTRAL_BOT, partById } from '../game/parts.js';
 import { defOf } from '../game/registry.js';
 import { session } from '../game/session.js';
 import { go } from '../router.js';
+import { current } from '../state.js';
 import { topbar } from '../ui/topbar.js';
 import { sayBtn } from '../ui/speak.js';
 import { sounds } from '../ui/sound.js';
@@ -27,7 +28,7 @@ export function play({ id }) {
         <div class="card pad meters"><div class="meter"><span>Energy</span><div class="bar"><i id="e" style="width:0"></i></div><b id="et">${out.energy} of 5</b></div>
           <div class="meter"><span>Safety</span><div class="bar"><i id="s" style="width:0;background:linear-gradient(180deg,#6cb8ff,#237be5)"></i></div><b id="st">${out.safety} of 5</b></div>
           <div class="meter"><span>Mission progress</span><div class="bar"><i id="p" style="width:0;background:linear-gradient(180deg,#ffe066,#f2ae0e)"></i></div><b id="pt">0%</b></div></div>
-        <div class="card pad wincard" id="wincard" hidden><p class="eyebrow">Mission complete!</p><h2>Nice work, rescuer!</h2>
+        <div class="card pad wincard" id="wincard" hidden><p class="eyebrow">Mission complete!</p><h2>Nice work, ${esc(current().name)}!</h2>
           <p class="sm">${esc(def.quizTip)}</p>${sayBtn('data-say-sel=".wincard h2, .wincard .sm"')}<button class="btn blue" id="cont">CONTINUE</button></div>
         <div class="card pad hintcard" id="hintcard" hidden>
           <p class="eyebrow">Hint</p><h2 id="hh"></h2><p id="hq" class="hq"></p>${sayBtn('data-say-sel="#hh, #hq"')}

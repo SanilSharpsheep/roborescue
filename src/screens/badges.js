@@ -9,5 +9,5 @@ export function badges() {
     const got = e.badges.includes(b.id);
     return `<li class="card bcell ${got ? 'got' : ''}"><span class="bframe ${got ? '' : 'locked'}"><img src="${art(got ? b.img : 'emoji/locked.svg')}" alt=""></span><b>${got ? esc(b.name) : '???'}</b><small>${esc(b.from)}</small></li>`;
   }).join('');
-  return { title: 'Badges', html: shell('/badges', `${pageHead('Badges', `${e.badges.length} of ${BADGES.length} collected`)}<ul class="badgewall">${cells}</ul>`) };
+  return { title: 'Badges', html: shell('/badges', `${pageHead(`${e.name}'s badges`, `${e.badges.length} of ${BADGES.length} collected`)}<ul class="badgewall">${cells}</ul>`) };
 }
