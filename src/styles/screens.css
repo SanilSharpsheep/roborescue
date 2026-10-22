@@ -449,3 +449,16 @@ button.who { cursor: pointer; }
 /* Top bar: no background band; it scrolls with the page */
 .topbar { background: none !important; position: static; margin: 0; padding: 0; backdrop-filter: none; }
 .center-screen > .topbar { position: absolute; padding: 1rem 1.2rem; }
+
+/* Who / New / Delete: top bar on top, content centered underneath (no overlap, no jumping) */
+.flow { flex-direction: column; padding: 1rem 1.2rem 2rem; text-align: center; background: var(--bg); }
+.flow > .topbar { position: static; flex: none; width: 100%; padding: 0; margin: 0; text-align: left; }
+.flowbody { flex: 1; width: 100%; margin: auto 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.4rem; padding: 1rem 0; }
+.brandtext { font-family: var(--font-display); font-weight: 800; font-size: 2.2rem; line-height: 1; color: var(--navy); }
+.brandtext b { color: #e0a100; }
+@media (max-width: 699px) { .brandtext { font-size: 1.9rem; } .flowbody { gap: 1rem; } }
+/* Keep the top bar fixed in place; only the content below it scrolls */
+.screen.flow { overflow: hidden; }
+.flowbody { flex: 1 1 0; min-height: 0; margin: 0; overflow-y: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
+.flowbody > :first-child { margin-top: auto; }
+.flowbody > :last-child { margin-bottom: auto; }
