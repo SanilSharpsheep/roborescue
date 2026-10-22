@@ -23,7 +23,7 @@
         linear-gradient(180deg, #cfeef7 0, #fff6df 20rem);
   --card: #fffbf0;
   --card-border: 3px solid var(--cream-line);
-  --card-shadow: 0 5px 0 rgba(120, 90, 20, 0.12), 0 12px 24px rgba(15, 54, 117, 0.1);
+  --card-shadow: none;
   --btn-yellow: linear-gradient(180deg, #ffe066 0, #ffc928 55%, #f2ae0e 100%);
   --btn-blue: linear-gradient(180deg, #4fa3ff 0, #237be5 55%, #1a62b8 100%);
   --btn-red: linear-gradient(180deg, #ff8a7a 0, #f15b49 60%, #d6402f 100%);
