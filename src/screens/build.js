@@ -41,7 +41,7 @@ export function build({ id }) {
   return {
     title: 'Build your bot',
     html: shell('/missions', `
-      ${topbar({ back: '#/missions', backLabel: 'Back to missions', title: 'Build Your Rescue Bot', sub: `<span class="pill lvl">${esc(m.level)} · ${esc(m.title)}</span>` })}
+      ${topbar({ back: '#/missions', backLabel: 'Back to missions', title: 'Build Your Rescue Bot', sub: `<span class="pill lvl">${esc(m.level)}<span class="pt"> · ${esc(m.title)}</span></span>` })}
       <div class="buildgrid">
         <section class="card previewcard" aria-label="Your bot"><div id="prev"></div></section>
         <div class="partscol">
