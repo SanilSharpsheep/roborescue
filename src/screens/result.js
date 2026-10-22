@@ -20,7 +20,7 @@ export function result({ id }) {
   return {
     title: 'Great job!',
     html: shell('/missions', `<div class="resultgrid">
-      <section class="card pad resmain"><img class="mascot" src="${art('mascot/cheer.png')}" alt="">
+      <section class="card pad resmain"><img class="mascot" src="${art('mascot/cheer.webp')}" alt="">
         <h1>Great job!</h1><p class="lead">${esc(def.winTitle)}</p><div class="rstars" aria-label="${out.stars} of 3 stars">${stars}</div><p class="sm">${esc(tip)}</p>
         <div class="stats"><div><span class="eyebrow">Energy</span><b>${out.energy} of 5</b></div><div><span class="eyebrow">Safety</span><b>${out.safety} of 5</b></div><div><span class="eyebrow">Time</span><b>${fmtTime(out.time)}</b></div></div>
         <p class="sm dim">Time is just for fun. It does not change your stars.</p>

@@ -35,7 +35,7 @@ export const clearTheFlood = {
   sensors: ['echo', 'heat', 'water'],
   maxSense: 1,
   defaultBuild: { move: null, sense: [], then: 'push' },
-  previewImg: { fins: 'bots/manta-three-quarter.png' },
+  previewImg: { fins: 'bots/manta-three-quarter.webp' },
   hint: 'Blockages hide under murky water where you cannot see them. Which sensor uses sound to "see"?',
   rules: [{
     key: 'then', label: 'Rule 1',
@@ -48,8 +48,8 @@ export const clearTheFlood = {
   badgeCopy: 'You cleared a flooded culvert with a manta-ray robot.',
   tip: (out) => (out.stars === 3 ? 'Perfect! Energy and safety are both great.' : out.energy < 4 ? 'Try a part that saves more energy for the second star.' : 'Get safety to 4 for the third star. Try a gentler action.'),
   quizTip: 'Next: a quick 2-question quiz about your robot.',
-  sprite: (b) => (b.move === 'fins' ? 'bots/manta-side.png' : null), // null = use the part picture
-  stuckSprite: 'bots/manta-stuck.png', spriteWidth: (b) => (b.move === 'fins' ? 0.2 : b.move === 'worm' ? 0.14 : 0.11),
+  sprite: (b) => (b.move === 'fins' ? 'bots/manta-side.webp' : null), // null = use the part picture
+  stuckSprite: 'bots/manta-stuck.webp', spriteWidth: (b) => (b.move === 'fins' ? 0.2 : b.move === 'worm' ? 0.14 : 0.11),
   draw: drawFlood,
 };
 import { MOVES, SENSORS, partById } from './parts.js';

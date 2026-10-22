@@ -33,7 +33,7 @@ export const deepWaterRescue = {
   sensors: ['echo', 'heat', 'water'],
   maxSense: 2,
   defaultBuild: { move: null, sense: [], then: 'pull', then2: 'dive' },
-  previewImg: { fins: 'bots/manta-three-quarter.png', octo: 'bots/builder-bot-soft-arms.png' },
+  previewImg: { fins: 'bots/manta-three-quarter.webp', octo: 'bots/builder-bot-soft-arms.webp' },
   hint: 'It is dark and deep. One sensor uses sound to find things. Another can tell when the water gets too deep. And how would you hold a scared animal?',
   rules: [
     { key: 'then', label: 'Rule 1', ifText: (b) => `${name(b.sense[0], 'A sensor')} finds the trapped animal`, options: FREE },
@@ -48,8 +48,8 @@ export const deepWaterRescue = {
   badgeCopy: 'You freed a trapped sea turtle with an octopus-inspired robot.',
   tip: (out) => (out.stars === 3 ? 'Perfect! Gentle, safe and full of energy.' : out.safety < 4 ? 'Free it gently and swim up when the water is too deep for the third star.' : 'Try to save energy for the second star.'),
   quizTip: 'Next: a quick 2-question quiz about octopuses.',
-  sprite: (b) => (b.move === 'octo' ? 'bots/builder-bot-soft-arms.png' : b.move === 'fins' ? 'bots/manta-side.png' : null),
-  stuckSprite: 'bots/manta-stuck.png', spriteWidth: (b) => (b.move === 'octo' ? 0.13 : b.move === 'fins' ? 0.17 : 0.08),
+  sprite: (b) => (b.move === 'octo' ? 'bots/builder-bot-soft-arms.webp' : b.move === 'fins' ? 'bots/manta-side.webp' : null),
+  stuckSprite: 'bots/manta-stuck.webp', spriteWidth: (b) => (b.move === 'octo' ? 0.13 : b.move === 'fins' ? 0.17 : 0.08),
   extraImages: ['emoji/turtle.svg'],
   draw: drawDeep,
 };

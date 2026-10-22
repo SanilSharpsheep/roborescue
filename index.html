@@ -8,9 +8,15 @@
     <title>RoboRescue</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="./manifest.webmanifest" />
-  </head>
+  <style>
+.boot{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:#cfe9f7;color:#0f3675;font-family:system-ui,sans-serif;font-weight:800;text-align:center}
+.bootlogo{font-size:clamp(2.2rem,9vw,4rem);color:#0f3675}.bootlogo span{color:#e0a100}
+.boot p{font-size:1.2rem;margin:0}.boot p::after{content:"";display:inline-block;width:.9rem;height:.9rem;margin-left:.6rem;border:3px solid #0f3675;border-top-color:transparent;border-radius:50%;animation:bootspin .9s linear infinite;vertical-align:-2px}
+@keyframes bootspin{to{transform:rotate(360deg)}}
+</style>
+</head>
   <body>
-    <div id="app"></div>
+    <div id="app"><div class="boot" role="status"><div class="bootlogo">Robo<span>Rescue</span></div><p>Loading your rescue team&hellip;</p></div></div>
     <noscript>RoboRescue needs JavaScript to run. Please turn it on in your browser.</noscript>
     <script type="module" src="/src/main.js"></script>
   </body>

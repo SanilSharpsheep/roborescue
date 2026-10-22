@@ -11,11 +11,11 @@ export function quiz({ id }) {
   return {
     title: 'Quick quiz',
     html: `<div class="screen center-screen scroll"><div class="quizbox card pad intro" id="intro">
-      <img class="mascot" src="${art('mascot/point.png')}" alt=""><h1 class="qtitle">Quick quiz time!</h1>
+      <img class="mascot" src="${art('mascot/point.webp')}" alt=""><h1 class="qtitle">Quick quiz time!</h1>
       <p class="lead">Two easy questions about your robot. No stars are at risk!</p>
-      <button class="btn blue" id="start">LET'S GO!</button><a class="link" href="#/result/${id}">Skip quiz</a></div>
+      <button class="btn blue" id="start">LET'S GO!</button><a class="link" href="#/result/${id}">Skip quiz</a><a class="link" href="#/home">Home</a></div>
       <div class="quizbox card pad" id="qbox" hidden>
-      <div class="quiztop"><a class="link" href="#/result/${id}" id="skip">Skip quiz</a></div>
+      <div class="quiztop"><a class="link" href="#/home">Home</a><a class="link" href="#/result/${id}" id="skip">Skip quiz</a></div>
       <h1 class="qtitle">Quick quiz</h1><p class="eyebrow" id="qn"></p><p class="eyebrow" style="color:var(--blue-dark)">ABOUT ${esc(qz.topic)}</p>
       <h2 id="qq" class="qq"></h2>
       ${settings().readAloud && 'speechSynthesis' in window ? '<button class="btn ghost small" id="read">🔊 Read it to me</button>' : ''}
