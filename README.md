@@ -34,3 +34,6 @@ To add a mission or world, see the RoboRescue Builder Guide.
 
 ## Credits and AI disclosure
 See [CREDITS.md](CREDITS.md).
+
+## License
+The game code is released under the [MIT License](LICENSE). Third-party fonts, icons and tools keep their own licenses, listed in [CREDITS.md](CREDITS.md).
