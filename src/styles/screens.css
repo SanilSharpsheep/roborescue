@@ -172,6 +172,13 @@
 .meter b { font-size: 1.2rem; }
 .hintcard h2 { font-size: 1.5rem; } .hq { font-size: 1.15rem; margin-top: .4rem; color: var(--blue-dark); }
 .hintbtns { display: flex; gap: .5rem; margin-top: .8rem; flex-wrap: wrap; }
+.hintguide { display: flex; gap: .7rem; align-items: flex-start; }
+.hintguide > img { width: 4.2rem; height: auto; flex: none; }
+.hintguide > div { min-width: 0; }
+.buildpics { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .3rem; }
+.buildpics span { display: inline-flex; align-items: center; gap: .3rem; padding: .2rem .6rem .2rem .25rem; border-radius: 999px; background: var(--track); font-weight: 800; font-size: .95rem; }
+.buildpics img { width: 1.9rem; height: 1.9rem; object-fit: contain; }
+.buildpics .rulechip { padding-left: .6rem; }
 
 /* ---------- Quiz / Result ---------- */
 .quizbox { width: min(46rem, 94vw); text-align: left; display: flex; flex-direction: column; gap: .8rem; }

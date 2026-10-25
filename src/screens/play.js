@@ -31,8 +31,9 @@ export function play({ id }) {
         <div class="card pad wincard" id="wincard" hidden><p class="eyebrow">Mission complete!</p><h2>Nice work, ${esc(current().name)}!</h2>
           <p class="sm">${esc(def.quizTip)}</p>${sayBtn('data-say-sel=".wincard h2, .wincard .sm"')}<button class="btn blue" id="cont">CONTINUE</button></div>
         <div class="card pad hintcard" id="hintcard" hidden>
-          <p class="eyebrow">Hint</p><h2 id="hh"></h2><p id="hq" class="hq"></p>${sayBtn('data-say-sel="#hh, #hq"')}
-          <p class="eyebrow" style="margin-top:.8rem">Your build</p><p class="sm">${esc(mv ? mv.name : '')} · ${esc(b.sense.join(' + '))} · ${b.sense.length > 1 && def.rules.length > 1 ? 2 : 1} rule${b.sense.length > 1 && def.rules.length > 1 ? 's' : ''}</p>
+          <div class="hintguide"><img src="${art('mascot/think.webp')}" alt=""><div><p class="eyebrow">Hint</p><h2 id="hh"></h2><p id="hq" class="hq"></p></div></div>${sayBtn('data-say-sel="#hh, #hq"')}
+          <p class="eyebrow" style="margin-top:.8rem">Your build</p>
+          <div class="buildpics">${mv ? `<span><img src="${art(mv.img)}" alt="">${esc(mv.name)}</span>` : ''}${b.sense.map((sid) => { const s = partById(SENSORS, sid); return s ? `<span><img src="${art(s.img)}" alt="">${esc(s.name)}</span>` : `<span>${esc(sid)}</span>`; }).join('')}<span class="rulechip">${b.sense.length > 1 && def.rules.length > 1 ? 2 : 1} rule${b.sense.length > 1 && def.rules.length > 1 ? 's' : ''}</span></div>
           <p class="sm dim">Your choices are saved. Change one and try again.</p>
           <div class="hintbtns"><a class="btn ghost small" href="#/build/${id}">CHANGE PARTS</a><button class="btn blue small" id="again">TRY AGAIN</button></div></div>
       </aside></div>`,
