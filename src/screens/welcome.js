@@ -10,7 +10,7 @@ export function welcome() {
       <div class="welcome-shade"></div>
       <div class="welcome-in">
         <h1 class="logo">Robo<span>Rescue</span></h1>
-        <p class="tag">Join the rescue team! Build a Rescue Bot to help Texas.</p>
+        <p class="tag">Join the rescue team! Build a Rescue Bot to help your community.</p>
         <button class="btn huge" id="play">${icon.play}PLAY</button>
       </div></div>`,
     mount(root) {
