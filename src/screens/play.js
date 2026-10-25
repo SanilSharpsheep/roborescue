@@ -6,7 +6,7 @@ import { MOVES, SENSORS, NEUTRAL_BOT, partById } from '../game/parts.js';
 import { defOf } from '../game/registry.js';
 import { session } from '../game/session.js';
 import { go } from '../router.js';
-import { current } from '../state.js';
+import { current, recordRun } from '../state.js';
 import { topbar } from '../ui/topbar.js';
 import { sayBtn } from '../ui/speak.js';
 import { sounds } from '../ui/sound.js';
@@ -102,6 +102,7 @@ async function run(root, id, b, out, def) {
   }
   function done() {
     const bn = $('#banner'); bn.hidden = false;
+    recordRun(current(), id, out.ok);
     if (out.ok) {
       bn.textContent = def.winBanner; bn.className = 'banner good'; sounds.success();
       $('#wincard').hidden = false; $('#cont').onclick = () => go('/quiz/' + id); $('#cont').focus();

@@ -8,6 +8,7 @@ const NAV = [
   ['/worlds', 'Worlds', icon.globe],
   ['/missions', 'Missions', icon.pin],
   ['/badges', 'Badges', icon.shield],
+  ['/report', 'Report', icon.chart],
   ['/settings', 'Settings', icon.sun],
 ];
 

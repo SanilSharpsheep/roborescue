@@ -21,6 +21,7 @@ import { home } from './screens/home.js';
 import { worlds } from './screens/worlds.js';
 import { missions } from './screens/missions.js';
 import { badges } from './screens/badges.js';
+import { report } from './screens/report.js';
 import { applySettings } from './ui/apply.js';
 import { settingsScreen } from './screens/settings.js';
 
@@ -60,6 +61,7 @@ route('/home', home);
 route('/worlds', worlds);
 route('/missions', missions);
 route('/badges', badges);
+route('/report', report);
 route('/build/:id', build);
 route('/play/:id', play);
 route('/quiz/:id', quiz);

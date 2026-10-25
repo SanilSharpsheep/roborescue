@@ -559,3 +559,34 @@ button.who { cursor: pointer; }
   .topbar:has(.pill.lvl) .roundbtn { width: 3rem; height: 3rem; }
   .topbar:has(.pill.lvl) .mutebtn, .topbar:has(.pill.lvl) .profbtn { width: 2.9rem; height: 2.9rem; }
 }
+
+/* ===== Engineer Report ===== */
+.repgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1rem; }
+.repsum { display: flex; flex-direction: column; gap: .2rem; }
+.repsum b { font-family: var(--display, 'Baloo 2', sans-serif); font-size: 2rem; line-height: 1.1; color: var(--navy, #0f3675); }
+.replist { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem; }
+.repmission { display: flex; gap: 1.2rem; align-items: stretch; padding: 0; overflow: hidden; }
+.repmission.locked { opacity: .65; }
+.repthumb { width: 28%; min-height: 9rem; object-fit: cover; flex: none; }
+.repbody { flex: 1; padding: 1rem 1.2rem 1rem 0; display: flex; flex-direction: column; gap: .5rem; }
+.reptop { display: flex; justify-content: space-between; align-items: flex-start; gap: .6rem; }
+.reptop h2 { font-size: 1.6rem; margin: .2rem 0 0; }
+.repstats { display: flex; gap: 1.6rem; margin: 0; flex-wrap: wrap; }
+.repstats dt { font-size: .85rem; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; opacity: .7; }
+.repstats dd { margin: 0; font-size: 1.5rem; font-weight: 800; }
+.repnote { margin: 0; font-weight: 700; }
+.repfoot p { margin: .3rem 0; }
+@media (max-width: 899px) { .repgrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 699px) {
+  .repmission { flex-direction: column; gap: 0; }
+  .repthumb { width: 100%; min-height: 7rem; max-height: 9rem; }
+  .repbody { padding: 1rem; }
+  .repsum b { font-size: 1.6rem; }
+}
+@media print {
+  .rail, .tbright, .roundbtn, #printrep, .mutebtn { display: none !important; }
+  .screen.shell, .main { height: auto !important; overflow: visible !important; display: block !important; padding: 0 !important; background: #fff !important; }
+  .card { box-shadow: none !important; break-inside: avoid; border: 1px solid #ccc; }
+  .repthumb { display: none; }
+  .repgrid { grid-template-columns: repeat(4, 1fr); }
+}

@@ -1,6 +1,6 @@
 import { topbar } from '../ui/topbar.js';
 import { esc, art } from '../ui/util.js';
-import { settings } from '../state.js';
+import { settings, current, recordQuiz } from '../state.js';
 import { quizOf } from '../game/registry.js';
 import { session } from '../game/session.js';
 import { go } from '../router.js';
@@ -23,22 +23,22 @@ export function quiz({ id }) {
       <div id="ans" class="answers"></div><p id="fb" class="feedback" aria-live="polite"></p>
       <button class="btn blue" id="next" hidden>NEXT QUESTION</button></div></div>`,
     mount(root) {
-      let i = 0, score = 0;
+      let i = 0, score = 0, missed = false;
       const $ = (s) => root.querySelector(s);
       session.quizScore = null;
       const show = () => {
         const q = qz.questions[i];
         $('#qn').textContent = `Question ${i + 1} of ${qz.questions.length}`; $('#qq').textContent = q.q;
-        $('#fb').textContent = ''; $('#next').hidden = true;
+        $('#fb').textContent = ''; $('#next').hidden = true; missed = false;
         $('#ans').innerHTML = q.a.map((t, n) => `<button class="answer" data-n="${n}"><span class="letter">${'ABC'[n]}</span>${esc(t)}</button>`).join('');
         $('#next').textContent = i === qz.questions.length - 1 ? 'SEE MY RESULT' : 'NEXT QUESTION';
         root.querySelectorAll('.answer').forEach((btn) => (btn.onclick = () => {
           const n = +btn.dataset.n, right = n === q.right;
-          if (right) { sounds.right(); score++; btn.classList.add('right'); root.querySelectorAll('.answer').forEach((x) => (x.disabled = true)); $('#fb').innerHTML = `<b>You got it!</b> ${esc(q.why)}`; $('#next').hidden = false; $('#next').focus(); }
-          else { sounds.wrong(); btn.classList.add('wrong'); btn.disabled = true; $('#fb').innerHTML = '<b>Not quite.</b> Try another one!'; }
+          if (right) { sounds.right(); if (!missed) score++; btn.classList.add('right'); root.querySelectorAll('.answer').forEach((x) => (x.disabled = true)); $('#fb').innerHTML = `<b>You got it!</b> ${esc(q.why)}`; $('#next').hidden = false; $('#next').focus(); }
+          else { sounds.wrong(); missed = true; btn.classList.add('wrong'); btn.disabled = true; $('#fb').innerHTML = '<b>Not quite.</b> Try another one!'; }
         }));
       };
-      $('#next').onclick = () => { if (++i >= qz.questions.length) { session.quizScore = score; go('/result/' + id); } else show(); };
+      $('#next').onclick = () => { if (++i >= qz.questions.length) { session.quizScore = score; recordQuiz(current(), id, score, qz.questions.length); go('/result/' + id); } else show(); };
       const rd = $('#read'); if (rd) rd.onclick = () => { speechSynthesis.cancel(); speechSynthesis.speak(new SpeechSynthesisUtterance($('#qq').textContent)); };
       $('#start').onclick = () => { $('#intro').hidden = true; $('#qbox').hidden = false; $('#qbox').classList.add('enter'); show(); };
       $('#start').focus();

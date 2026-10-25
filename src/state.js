@@ -57,7 +57,7 @@ export function logout() { state.current = null; save(); }
 export function clearAllExplorers() { state.explorers = []; state.current = null; save(); }
 export function resetProgress(id) {
   const e = explorerById(id);
-  if (e) { e.progress = {}; e.badges = []; save(); }
+  if (e) { e.progress = {}; e.badges = []; e.stats = {}; save(); }
 }
 
 // ----- progress helpers -----
@@ -76,6 +76,22 @@ export function recordResult(e, missionId, result) {
   e.progress[missionId] = { ...old, ...result, done: true, stars: Math.max(old.stars || 0, result.stars) };
   const m = MISSIONS.find((x) => x.id === missionId);
   if (m && !e.badges.includes(m.badge)) e.badges.push(m.badge);
+  save();
+}
+
+// ----- Engineer Report: tries, stuck count and quiz score per mission (kept on this device only) -----
+const blank = () => ({ runs: 0, fails: 0 });
+export const statsOf = (e, id) => ({ ...blank(), ...((e.stats || {})[id] || {}) });
+export function recordRun(e, id, ok) {
+  const s = ((e.stats ||= {})[id] ||= blank());
+  s.runs = (s.runs || 0) + 1;
+  if (!ok) s.fails = (s.fails || 0) + 1;
+  else if (s.solvedAfter === undefined) s.solvedAfter = s.fails || 0; // how many times it got stuck before the first win
+  save();
+}
+export function recordQuiz(e, id, score, total) {
+  const s = ((e.stats ||= {})[id] ||= blank());
+  s.quiz = { score, total };
   save();
 }
 
