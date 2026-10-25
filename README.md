@@ -1,6 +1,6 @@
 # RoboRescue
 
-A browser game for kids ages 6 to 12 where kids (Rescuers) build one friendly Rescue Bot, give it animal-inspired parts (biomimicry), and use it on Texas flood missions. Built for the Congressional App Challenge.
+A browser game for kids ages 6 to 12 where players (Rescuers) build one friendly Rescue Bot, give it animal-inspired parts (biomimicry), and use it on Texas flood missions. Built for the Congressional App Challenge.
 
 Works on iPad, Chromebook, laptop and phone. Water World has 3 missions (Level 1 Clear the Flood, Level 2 Inspect the Bridge, Level 3 Deep Water Rescue); other worlds are coming soon.
 
